@@ -1,5 +1,5 @@
 
-public class Products {
+public class ProductsPartNumber1 {
 
 	public ArrayList<Product> CreateList() {
 		ArrayList <Product> leftOverProducts = new ArrayList <Product>(); // leftoverproducts the list contains the leftover products
