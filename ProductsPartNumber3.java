@@ -21,10 +21,10 @@ public class ProductsPartNumber3 {
    		 return;
    	 } else if (daysOfSameProd.size() > 1) {
    		 boolean sorted = false; /* sorting the parallel lists by decreasing order based 
-			 						  * on the time passed since the date of purchase 
-			 						  * of the stock to reduce the stock that has 
-			 						  * stayed most in bussiness
-			 						  */
+			                  * on the time passed since the date of purchase 		 
+			 		  * of the stock to reduce the stock that has 
+			                  * stayed most in bussiness
+			 		  */
    		 while (!sorted) {
    			 sorted = true;
    			 for (int i = 0; i < daysOfSameProd.size(); i++) {
@@ -53,9 +53,9 @@ public class ProductsPartNumber3 {
     public void quantity(long quantity) {
    	 final int INDEX = 0; /* The index will always be zero
    	                       * because in order to move on to the next item of the list 
-							   * a needed condition is to have all previous elements of the zero position removed
-							   * and the rest of them moved to the left
-							   */
+		               * a needed condition is to have all previous elements of the zero position removed
+			       * and the rest of them moved to the left
+			       */
    	 if (quantity < Product.prod.get(indexOfSameProducts.get(INDEX)).getQuantity()) {
    		 // If the quantity requested is less than that of the first cell, remove it
    		 Product.prod.get(indexOfSameProducts.get(INDEX)).setQuantity(Product.prod.get(indexOfSameProducts.get(INDEX)).getQuantity() - quantity);
