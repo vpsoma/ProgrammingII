@@ -10,7 +10,8 @@ public class Csv2 {
 	static ArrayList<String> name = new ArrayList<String>();
 	static ArrayList<String> month = new ArrayList<String>();
 	static ArrayList<String> fees = new ArrayList<String>();
-	
+	static ArrayList<String> mail = new ArrayList<String>();
+
 	public static void main(String[] args) {
 		String csvFile = "C:\\Users\\ioann\\Documents";
 		BufferedReader br = null;
@@ -27,6 +28,7 @@ public class Csv2 {
 				name.add(newPurchase[0]);
 				month.add(newPurchase[1]);
 				fees.add(newPurchase[2]);
+				mail.add(newPurchase[3]);
 			}
 
 		} catch (FileNotFoundException e) {
