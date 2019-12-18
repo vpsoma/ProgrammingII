@@ -14,7 +14,6 @@ public class NewPurchases extends Csv2 {
 	private static String newMail;
 	// Creation of a list with the new customers
 	private static ArrayList<NewPurchases> NewCustomers = new ArrayList<NewPurchases>();
-
 	// Checks if the new purchases are from the old customers or not
 	public static void findCustomers() {
 		/*
@@ -112,6 +111,17 @@ public class NewPurchases extends Csv2 {
 	// Returns the proper list
 	public ArrayList<NewPurchases> addData(ArrayList<NewPurchases> list) {
 		return list;
+	}
+	
+	//Default constructor
+	public NewPurchases() {
+		
+	}
+	
+	//Constructor
+	public NewPurchases(String newName, String newMail) {
+		this.newName=newName;
+		this.newMail=newMail;
 	}
 
 }
