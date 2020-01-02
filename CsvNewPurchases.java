@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * 
  */
 
-public class Csv2 {
+public class CsvNewPurchases {
 
 	/** Statement of the static fields */
 	static ArrayList<String> name = new ArrayList<String>();

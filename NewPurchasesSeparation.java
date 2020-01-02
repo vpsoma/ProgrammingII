@@ -13,18 +13,18 @@ import java.util.ArrayList;
  *
  */
 
-public class NewPurchases extends Csv2 {
+public class NewPurchasesSeparation extends CsvNewPurchases {
 
 	/** Creation of a list with the new fees of the customers */
-	private static ArrayList<NewPurchases> OldCustomers = new ArrayList<NewPurchases>();
+	private static ArrayList<NewPurchasesSeparation> OldCustomers = new ArrayList<NewPurchasesSeparation>();
 	// The data that we need
-	private static NewPurchases newF;
+	private static NewPurchasesSeparation newF;
 	private static String newName;
 	private static String newMonth;
 	private static String newFees;
 	private static String newMail;
 	/** Creation of a list with the new customers */
-	private static ArrayList<NewPurchases> NewCustomers = new ArrayList<NewPurchases>();
+	private static ArrayList<NewPurchasesSeparation> NewCustomers = new ArrayList<NewPurchasesSeparation>();
 
 	/** Checks if the new purchases are from existing customers or not */
 	public static void separateCustomers() {
@@ -37,7 +37,7 @@ public class NewPurchases extends Csv2 {
 			boolean found = false;
 			int spot = -1;
 			int j = 0;
-			Dbconnection a = new Dbconnection();
+			Databaseconnection a = new Databaseconnection();
 			do {
 				if (name.get(j) == a.getTotalFees().get(j).getName()) {
 					found = true;
@@ -50,24 +50,24 @@ public class NewPurchases extends Csv2 {
 				newMonth = month.get(spot);
 				newFees = fees.get(spot);
 				newMail = mail.get(spot);
-				newF = new NewPurchases(newName, newMonth, newFees, newMail, OldCustomers);
+				newF = new NewPurchasesSeparation(newName, newMonth, newFees, newMail, OldCustomers);
 			} else {
 				newName = name.get(i);
 				newMonth = month.get(i);
 				newFees = fees.get(i);
 				newMail = mail.get(spot);
-				newF = new NewPurchases(newName, newMonth, newFees, newMail, NewCustomers);
+				newF = new NewPurchasesSeparation(newName, newMonth, newFees, newMail, NewCustomers);
 			}
 		}
 	}
 
 	/** Creation of getters and setters */
 
-	public static ArrayList<NewPurchases> getOldCustomers() {
+	public static ArrayList<NewPurchasesSeparation> getOldCustomers() {
 		return OldCustomers;
 	}
 
-	public static void setNewFees(ArrayList<NewPurchases> newFees) {
+	public static void setNewFees(ArrayList<NewPurchasesSeparation> newFees) {
 		OldCustomers = newFees;
 	}
 
@@ -76,7 +76,7 @@ public class NewPurchases extends Csv2 {
 	}
 
 	public static void setNewName(String newName) {
-		NewPurchases.newName = newName;
+		NewPurchasesSeparation.newName = newName;
 	}
 
 	public static String getNewMonth() {
@@ -84,7 +84,7 @@ public class NewPurchases extends Csv2 {
 	}
 
 	public static void setNewMonth(String newMonth) {
-		NewPurchases.newMonth = newMonth;
+		NewPurchasesSeparation.newMonth = newMonth;
 	}
 
 	public static String getNewFees() {
@@ -92,14 +92,14 @@ public class NewPurchases extends Csv2 {
 	}
 
 	public static void setNewFees(String newFees) {
-		NewPurchases.newFees = newFees;
+		NewPurchasesSeparation.newFees = newFees;
 	}
 
-	public static ArrayList<NewPurchases> getNewCustomers() {
+	public static ArrayList<NewPurchasesSeparation> getNewCustomers() {
 		return NewCustomers;
 	}
 
-	public static void setNewCustomers(ArrayList<NewPurchases> newCustomers) {
+	public static void setNewCustomers(ArrayList<NewPurchasesSeparation> newCustomers) {
 		NewCustomers = newCustomers;
 	}
 
@@ -108,11 +108,11 @@ public class NewPurchases extends Csv2 {
 	}
 
 	public static void setNewMail(String newMail) {
-		NewPurchases.newMail = newMail;
+		NewPurchasesSeparation.newMail = newMail;
 	}
 
 	/** Constructor with the arguments that the list contains */
-	public NewPurchases(String name, String month, String fees, String mail, ArrayList<NewPurchases> list) {
+	public NewPurchasesSeparation(String name, String month, String fees, String mail, ArrayList<NewPurchasesSeparation> list) {
 		name = newName;
 		month = newMonth;
 		fees = newFees;
@@ -122,7 +122,7 @@ public class NewPurchases extends Csv2 {
 	}
 	
 	/** Default constructor */
-	public NewPurchases() {
+	public NewPurchasesSeparation() {
 		
 	}
 
@@ -132,7 +132,7 @@ public class NewPurchases extends Csv2 {
 	 * @param a list and 
 	 * @return the same list to the constructor
 	 */
-	public ArrayList<NewPurchases> addData(ArrayList<NewPurchases> list) {
+	public ArrayList<NewPurchasesSeparation> addData(ArrayList<NewPurchasesSeparation> list) {
 		return list;
 	}
 

@@ -3,15 +3,24 @@ package javaProg2;
 import java.util.*;
 import java.sql.*;
 
-public class Dbconnection {
+/**
+ * Connection with the data base.
+ * This class connects the program with the data base and then saves
+ * the data to a list.
+ * 
+ * @author Ioanna Martini
+ *
+ */
 
-	//Statement of the static fields
-	static ArrayList<Dbconnection> totalFees = new ArrayList<Dbconnection>();
+public class Databaseconnection {
+
+	/** The list that the data will be saved */
+	static ArrayList<Databaseconnection> totalFees = new ArrayList<Databaseconnection>();
 	private static Float t_fees;
 	private static Float min_fees;
 	private static String mail;
 	private static String name;
-	static Dbconnection totalF;
+	static Databaseconnection totalF;
 
 	//Connection with the sql.server
 	public static void main() {
@@ -21,7 +30,7 @@ public class Dbconnection {
 		Statement stmt;
 		ResultSet rs;
 
-		/* declare ODBC connectivity */
+		/** declare ODBC connectivity */
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		} catch (java.lang.ClassNotFoundException e) {
@@ -29,7 +38,7 @@ public class Dbconnection {
 			System.out.println(e.getMessage());
 		}
 
-		/* execute SQL statements */
+		/** execute SQL statements */
 		try {
 			dbcon = DriverManager.getConnection(url);
 			stmt = dbcon.createStatement();
@@ -42,8 +51,8 @@ public class Dbconnection {
 				t_fees = rs.getFloat("sumf");
 				mail = rs.getString("Mail");
 				name = rs.getString("Name");
-				totalF = new Dbconnection(t_fees, min_fees, mail, name);
-				Dbconnection.print_test();
+				totalF = new Databaseconnection(t_fees, min_fees, mail, name);
+				Databaseconnection.print_test();
 			}
 			rs.close();
 			stmt.close();
@@ -55,13 +64,13 @@ public class Dbconnection {
 
 	}
 
-	//Creation of getters and setters
-	public static Dbconnection getTotalF() {
+	/** Creation of getters and setters */
+	public static Databaseconnection getTotalF() {
 		return totalF;
 	}
 
-	public static void setTotalF(Dbconnection totalF) {
-		Dbconnection.totalF = totalF;
+	public static void setTotalF(Databaseconnection totalF) {
+		Databaseconnection.totalF = totalF;
 	}
 
 	public static Float getT_fees() {
@@ -69,7 +78,7 @@ public class Dbconnection {
 	}
 
 	public static void setT_fees(Float t_fees) {
-		Dbconnection.t_fees = t_fees;
+		Databaseconnection.t_fees = t_fees;
 	}
 
 	public static Float getMin_fees() {
@@ -77,7 +86,7 @@ public class Dbconnection {
 	}
 
 	public static void setMin_fees(Float min_fees) {
-		Dbconnection.min_fees = min_fees;
+		Databaseconnection.min_fees = min_fees;
 	}
 
 	public static String getMail() {
@@ -85,7 +94,7 @@ public class Dbconnection {
 	}
 
 	public static void setMail(String mail) {
-		Dbconnection.mail = mail;
+		Databaseconnection.mail = mail;
 	}
 
 	public static String getName() {
@@ -93,32 +102,36 @@ public class Dbconnection {
 	}
 
 	public static void setName(String name) {
-		Dbconnection.name = name;
+		Databaseconnection.name = name;
 	}
 
-	public ArrayList<Dbconnection> getTotalFees() {
+	public ArrayList<Databaseconnection> getTotalFees() {
 		return totalFees;
 	}
 
-	//Constructor with the arguments that the list contains
-	public Dbconnection(Float t_fees, Float min_fees, String mail, String name) {
-		Dbconnection.t_fees = t_fees;
-		Dbconnection.min_fees = min_fees;
-		Dbconnection.mail = mail;
-		Dbconnection.name = name;
+	/** Constructor with the arguments that the list contains */
+	public Databaseconnection(Float t_fees, Float min_fees, String mail, String name) {
+		Databaseconnection.t_fees = t_fees;
+		Databaseconnection.min_fees = min_fees;
+		Databaseconnection.mail = mail;
+		Databaseconnection.name = name;
 		totalFees.add(this);
 	}
 
-	//default constructor
-	public Dbconnection() {
+	/** default constructor */
+	public Databaseconnection() {
 
 	}
 	
+	/**
+	 * That is a method that is used to check if the data that are archived
+	 * from the data base are correct
+	 */
 	public static void print_test() {
-		System.out.println(Dbconnection.getName());
-		System.out.println(Dbconnection.getMail());
-		System.out.println(Dbconnection.getT_fees());
-		System.out.println(Dbconnection.getMin_fees());
+		System.out.println(Databaseconnection.getName());
+		System.out.println(Databaseconnection.getMail());
+		System.out.println(Databaseconnection.getT_fees());
+		System.out.println(Databaseconnection.getMin_fees());
 	}
 
 }
