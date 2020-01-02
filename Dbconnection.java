@@ -11,13 +11,12 @@ public class Dbconnection {
 	private static Float min_fees;
 	private static String mail;
 	private static String name;
-	private static int id;
 	static Dbconnection totalF;
 
 	//Connection with the sql.server
-	public static void getValues(String args[]) {
-		String url = "jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;"
-				+ "databaseName=DB29;user=G593;password=59w495f49;";
+	public static void main() {
+		String url = "jdbc:sqlserver://195.251.249.161:1433;"
+				+ "databaseName=DB29;user=G529;password=59w495f49;";
 		Connection dbcon;
 		Statement stmt;
 		ResultSet rs;
@@ -34,17 +33,17 @@ public class Dbconnection {
 		try {
 			dbcon = DriverManager.getConnection(url);
 			stmt = dbcon.createStatement();
-			rs = stmt.executeQuery("SELECT sum(fees), min(fees), Mail, Name, Id"
-					               + "FROM Java_Agores as a, Java_Customers as b " 
-					               + "WHERE a.id = b.id " 
-					               + "GROUP BY id");
+			rs = stmt.executeQuery("SELECT  min(Fees) as minf, sum(Fees) as sumf, a.Mail, a.Name\r\n" + 
+					"FROM Java_Agores as a, Java_Customers as b \r\n" + 
+					"WHERE a.Name = b.Name AND a.Mail = b.Mail\r\n" + 
+					"GROUP BY a.Name,a.Mail");
 			while (rs.next()) {
-				t_fees = rs.getFloat("sum(fees)");
-				min_fees = rs.getFloat("min(fees)");
+				min_fees = rs.getFloat("minf");
+				t_fees = rs.getFloat("sumf");
 				mail = rs.getString("Mail");
 				name = rs.getString("Name");
-				id = rs.getInt("Id");
-				totalF = new Dbconnection(t_fees, min_fees, mail, name, id);
+				totalF = new Dbconnection(t_fees, min_fees, mail, name);
+				Dbconnection.print_test();
 			}
 			rs.close();
 			stmt.close();
@@ -97,31 +96,29 @@ public class Dbconnection {
 		Dbconnection.name = name;
 	}
 
-	public static int getId() {
-		return id;
-	}
-
-	public static void setId(int id) {
-		Dbconnection.id = id;
-	}
-
 	public ArrayList<Dbconnection> getTotalFees() {
 		return totalFees;
 	}
 
 	//Constructor with the arguments that the list contains
-	public Dbconnection(Float t_fees, Float min_fees, String mail, String name, int id) {
+	public Dbconnection(Float t_fees, Float min_fees, String mail, String name) {
 		Dbconnection.t_fees = t_fees;
 		Dbconnection.min_fees = min_fees;
 		Dbconnection.mail = mail;
 		Dbconnection.name = name;
-		Dbconnection.id = id;
 		totalFees.add(this);
 	}
 
 	//default constructor
 	public Dbconnection() {
 
+	}
+	
+	public static void print_test() {
+		System.out.println(Dbconnection.getName());
+		System.out.println(Dbconnection.getMail());
+		System.out.println(Dbconnection.getT_fees());
+		System.out.println(Dbconnection.getMin_fees());
 	}
 
 }
