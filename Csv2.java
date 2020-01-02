@@ -6,13 +6,25 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+
+/**
+ * Import data from csv file.
+ * This class takes the new purchases of the company from a csv file,
+ * separates the name,mail,fees and the month of each purchase
+ * and saves them to separate lists.
+ * 
+ */
+
 public class Csv2 {
+
+	/** Statement of the static fields */
 	static ArrayList<String> name = new ArrayList<String>();
 	static ArrayList<String> month = new ArrayList<String>();
 	static ArrayList<String> fees = new ArrayList<String>();
 	static ArrayList<String> mail = new ArrayList<String>();
 
-	public static void main(String[] args) {
+	/** Separation of the elements of each line and storage in lists */
+	public static void getsCvData(String[] args) {
 		String csvFile = "C:\\Users\\ioann\\Documents";
 		BufferedReader br = null;
 		String line = "";
