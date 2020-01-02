@@ -2,9 +2,20 @@ package javaProg2;
 
 import java.util.ArrayList;
 
+/**
+ * Separation of the customers.
+ * This class checks if the purchases from the csv file
+ * have been made by existing or new customers
+ * and saves the data into two separated lists 
+ * based on this treaty.
+ * 
+ * @author Ioanna Martini
+ *
+ */
+
 public class NewPurchases extends Csv2 {
 
-	// Creation of a list with the new fees of our customers
+	/** Creation of a list with the new fees of the customers */
 	private static ArrayList<NewPurchases> OldCustomers = new ArrayList<NewPurchases>();
 	// The data that we need
 	private static NewPurchases newF;
@@ -12,14 +23,15 @@ public class NewPurchases extends Csv2 {
 	private static String newMonth;
 	private static String newFees;
 	private static String newMail;
-	// Creation of a list with the new customers
+	/** Creation of a list with the new customers */
 	private static ArrayList<NewPurchases> NewCustomers = new ArrayList<NewPurchases>();
 
-	// Checks if the new purchases are from the old customers or not
-	public static void findCustomers() {
+	/** Checks if the new purchases are from existing customers or not */
+	public static void separateCustomers() {
 		/*
-		 * Checks if the customer already exists if yes, we add his new fees to a new
-		 * list if not, we add the new customer to another list
+		 * Checks if the customer already exists
+		 * if yes, adds his new fees to a new list
+		 * if not, adds the new customer to another list
 		 */
 		for (int i = 0; i < name.size(); i++) {
 			boolean found = false;
@@ -49,7 +61,7 @@ public class NewPurchases extends Csv2 {
 		}
 	}
 
-	// Creation of getters and setters
+	/** Creation of getters and setters */
 
 	public static ArrayList<NewPurchases> getOldCustomers() {
 		return OldCustomers;
@@ -99,7 +111,7 @@ public class NewPurchases extends Csv2 {
 		NewPurchases.newMail = newMail;
 	}
 
-	// Constructor with the arguments that the list contains
+	/** Constructor with the arguments that the list contains */
 	public NewPurchases(String name, String month, String fees, String mail, ArrayList<NewPurchases> list) {
 		name = newName;
 		month = newMonth;
@@ -108,8 +120,18 @@ public class NewPurchases extends Csv2 {
 		// Adds data to the proper list
 		newF.addData(list).add(this);
 	}
+	
+	/** Default constructor */
+	public NewPurchases() {
+		
+	}
 
-	// Returns the proper list
+	/** 
+	 * Returns the proper list to the constructor
+	 * in order to save the data to the proper list
+	 * @param a list and 
+	 * @return the same list to the constructor
+	 */
 	public ArrayList<NewPurchases> addData(ArrayList<NewPurchases> list) {
 		return list;
 	}
