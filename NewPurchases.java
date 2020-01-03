@@ -1,5 +1,3 @@
-package javaProg2;
-
 import java.util.ArrayList;
 
 public class NewPurchases extends Csv2 {
@@ -11,7 +9,9 @@ public class NewPurchases extends Csv2 {
 	private static String newName;
 	private static String newMonth;
 	private static String newFees;
+	private static Float newfees;
 	private static String newMail;
+	private static int nf=0;
 	// Creation of a list with the new customers
 	private static ArrayList<NewPurchases> NewCustomers = new ArrayList<NewPurchases>();
 	// Checks if the new purchases are from the old customers or not
@@ -36,14 +36,15 @@ public class NewPurchases extends Csv2 {
 				newName = name.get(spot);
 				newMonth = month.get(spot);
 				newFees = fees.get(spot);
+				nf=Integer.parseInt(newFees);
 				newMail = mail.get(spot);
-				newF = new NewPurchases(newName, newMonth, newFees, newMail, OldCustomers);
+				newF = new NewPurchases(newName, newMonth, nf, newMail);
 			} else {
 				newName = name.get(i);
 				newMonth = month.get(i);
 				newFees = fees.get(i);
 				newMail = mail.get(spot);
-				newF = new NewPurchases(newName, newMonth, newFees, newMail, NewCustomers);
+				newF = new NewPurchases(newName, newMonth, newFees, newMail);
 			}
 		}
 	}
@@ -98,14 +99,24 @@ public class NewPurchases extends Csv2 {
 		NewPurchases.newMail = newMail;
 	}
 
-	// Constructor with the arguments that the list contains
-	public NewPurchases(String name, String month, String fees, String mail, ArrayList<NewPurchases> list) {
+	// Constructor with the arguments that the list OldCustomers contains
+		public NewPurchases(String name, String month, int newf, String mail) {
+			name = newName;
+			month = newMonth;
+			newf=nf;
+			mail = newMail;
+			// Adds data to the proper list
+			OldCustomers.add(this);
+		}
+	
+	// Constructor with the arguments that the list NewCustomers contains
+	public NewPurchases(String name, String month, String fees, String mail) {
 		name = newName;
 		month = newMonth;
 		fees = newFees;
 		mail = newMail;
 		// Adds data to the proper list
-		newF.addData(list).add(this);
+		NewCustomers.add(this);
 	}
 
 	// Returns the proper list
@@ -119,9 +130,33 @@ public class NewPurchases extends Csv2 {
 	}
 	
 	//Constructor
-	public NewPurchases(String newName, String newMail) {
+	public NewPurchases(String newName, String newMail, String newFees) {
 		this.newName=newName;
 		this.newMail=newMail;
+		this.newFees=newFees;
+	}
+	
+	//Constructor
+	/**
+	 * 
+	 * @param name
+	 * @param month
+	 * @param fees
+	 * @param mail
+	 */
+	public NewPurchases(String name, String month, Float fees, String mail) {
+		name = newName;
+		month = newMonth;
+		fees = newfees;
+		mail = newMail;
+	}
+
+	public static Float getNewfees() {
+		return newfees;
+	}
+
+	public static void setNewfees(Float newfees) {
+		NewPurchases.newfees = newfees;
 	}
 
 }
