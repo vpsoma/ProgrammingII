@@ -5,14 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This class refers to the stock of the company.
+ * It creates a map that includes the stock and finds the sell period of it.
+ * @author Ειρηάννα Παπουτσή 
+ */
 public class ProductFactory {
-	/**
- 	 * This class refers to the stock of the company.
-         * It creates a map that includes the stock and finds the sell period of it.
-         * @author Ειρηάννα Παπουτσή 
-         */
-	private static Map<String,List<Product>> allProducts = new HashMap<>();
 
+	/** It includes the stock of the company */
+	private static Map<String,List<Product>> allProducts = new HashMap<>();
+	/** Represents the demand cost for the company to sell the last's year products based on accounting terms. */
 	private static double costSold = 0;
 
 	public Product createProduct(String name, String code, int quantity, int day, int month, int year, double price) {
