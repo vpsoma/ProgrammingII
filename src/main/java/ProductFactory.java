@@ -6,7 +6,11 @@ import java.util.List;
 import java.util.Map;
 
 public class ProductFactory {
-
+	/**
+ 	 * This class refers to the stock of the company.
+         * It creates a map that includes the stock and finds the sell period of it.
+         * @author Ειρηάννα Παπουτσή 
+         */
 	private static Map<String,List<Product>> allProducts = new HashMap<>();
 
 	private static double costSold = 0;
