@@ -37,7 +37,7 @@ public class Customer extends NewPurchases {
 			} while (found = false && i == sizeoffered);
 
 			// Putting every customer in a category depending in his total amount/fees.
-			if (found == true) {
+			if (found == false) {
 				position = 0;
 				float amount = Float.parseFloat(NewPurchases.getOldCustomers().get(counter).getNewFees());
 
