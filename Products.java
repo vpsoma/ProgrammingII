@@ -1,7 +1,21 @@
 import java.util.ArrayList;
 
 public class Products {
-	public void purchase(int code, int quantity) {
+	 public int findDays(int day, int month, int year) {
+    	 Date date = new Date();
+    	 SimpleDateFormat sdfd = new SimpleDateFormat("dd");
+    	 String ds = sdfd.format(date); // ds=dayString
+    	 int di = Integer.parseInt(ds); // di=dayint μετατρέπει String σε int
+    	 SimpleDateFormat sdfm = new SimpleDateFormat("MM");
+    	 String ms = sdfm.format(date); // ms=monthString
+    	 int mi = Integer.parseInt(ms); // mi=monthint μετατρέπει String σε int
+    	 SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
+    	 String ys = sdfy.format(date); // ys=yearString
+    	 int yi = Integer.parseInt(ys); // yi=yearint μετατρέπει String σε int
+    	 int diff=0;
+	 }
+    	 
+	 public void purchase(int code, int quantity) {
 		ArrayList<Integer> samecode = new ArrayList<Integer>(); /*contains days passed*/
 		ArrayList<Integer> samecodeindex = new ArrayList<Integer>();
 		int sum = 0;
@@ -30,14 +44,15 @@ public class Products {
 					}
 				}
 		    }
-			for (int i = 0; i<samecode.size(); i++) {
+			for (int i = 0; i < samecode.size(); i++) {
 				quantity(quantity);
 			}
 		} else {
 			quantity(quantity);
 		}
 	}
-	public void quantity(int quantity) {
+	
+	 public void quantity(int quantity) {
 		if (quantity < Arraylist.get(samecodeindex(i)).getQuantity())
 			Arraylist.get(samecodeindex(i)).setQuantity(Arraylist.get(samecodeindex(i)).getQuantity - quantity);
 		else if (quantity == Arraylist.get(samecodeindex(i)).getQuantity())
