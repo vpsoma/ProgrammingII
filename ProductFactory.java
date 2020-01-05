@@ -24,9 +24,15 @@ public class ProductFactory {
 	 * Then it adds the stock to a map called allProducts.
 	 */
 	public void purchaseTheStock(String name, String code, int quantity, int day, int month, int year, double price) {
-		double sellPeriod = findSellPeriod(quantity, costSold); 
+		double sellPeriod = findSellPeriod(quantity, costSold); // findSellPeriod method is called in order to calculate and save the sell period of the product
 		Product newProduct = new Product(name, code, quantity, day, month, year, price, sellPeriod);
 		
+		/*
+		 * Checks if the stock the company bought already exists in the map.
+		 * If yes, it modifies the proper item in order to include the new one.
+		 * If not, it creates a new list which includes the fields of the stock 
+		 * and then adds it to the map in a form of a new item.
+		 */
 		if(allProducts.containsKey(newProduct.getName())) {
 			allProducts.get(newProduct.getName()).add(newProduct);
 		}else {
