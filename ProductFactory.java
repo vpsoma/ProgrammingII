@@ -23,7 +23,7 @@ public class ProductFactory {
 	 * sell period of the product which is the needed expected period to pass for the product to be sold.
 	 * Then it adds the stock to a map called allProducts.
 	 */
-	public Product createProduct(String name, String code, int quantity, int day, int month, int year, double price) {
+	public void purchaseTheStock(String name, String code, int quantity, int day, int month, int year, double price) {
 		double sellPeriod = findSellPeriod(quantity, costSold); 
 		Product newProduct = new Product(name, code, quantity, day, month, year, price, sellPeriod);
 		
@@ -34,8 +34,6 @@ public class ProductFactory {
 			value.add(newProduct);
 			allProducts.put(newProduct.getName(), value);
 		}
-		
-		return newProduct;
 	}
 	
 	public static Map<String,List<Product>> getAllProducts() {
@@ -44,8 +42,8 @@ public class ProductFactory {
 
 	public double findSellPeriod(int quantity, double costSold) {
 		if(quantity != 0 && costSold != 0) {
-			double kta = costSold / quantity; // Calculation of Stock Turnover Ratio based on accounting types
-			return 360 / kta; // Calculation of stock sale period based on accounting types
+			double ratio = costSold / quantity; // Calculation of Stock Turnover Ratio based on accounting types
+			return 360 / ratio; // Calculation of stock sale period based on accounting types
 		}else {
 			System.out.println("Sell period cannot be calculated. Setting it to 0...");
 			return 0;
