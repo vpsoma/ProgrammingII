@@ -45,7 +45,12 @@ public class ProductFactory {
 	public static Map<String,List<Product>> getAllProducts() {
 		return allProducts;
 	}
-
+	
+	/** 
+	 * Finds the sell period of the product using its quantity and the costSold variable.
+	 * Calculates the sell period based on accounting types, unless the quantity nor the costSold are equal to zero.
+	 * If at least one of them is zero the sell period cannot be calculated and it will be set as zero as well.
+	 */
 	public double findSellPeriod(int quantity, double costSold) {
 		if(quantity != 0 && costSold != 0) {
 			double ratio = costSold / quantity; // Calculation of Stock Turnover Ratio based on accounting types
