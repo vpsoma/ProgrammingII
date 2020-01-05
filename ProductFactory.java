@@ -5,6 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This class refers to the stock of the company.
+ * It creates a map that includes the stock and finds the sell period of it.
+ * @author EirhannaPapoutsi
+ */
 public class ProductFactory {
 
 	private static Map<String,List<Product>> allProducts = new HashMap<>();
