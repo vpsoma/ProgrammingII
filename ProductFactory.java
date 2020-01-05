@@ -11,11 +11,18 @@ import java.util.Map;
  * @author EirhannaPapoutsi
  */
 public class ProductFactory {
-
+	/** It includes the stock of the company */
 	private static Map<String,List<Product>> allProducts = new HashMap<>();
-
+	/** Represents the demand cost for the company to sell the last's year products based on accounting terms. */
 	private static double costSold = 0;
 
+	/** 
+	 * Defines a product the company bought.
+	 * It creates the stock of the company using the product's name, code, quantity, price and 
+	 * the day, month, year the product was bought from the company. In addition, it includes the 
+	 * sell period of the product which is the needed expected period to pass for the product to be sold.
+	 * Then it adds the stock to a map called allProducts.
+	 */
 	public Product createProduct(String name, String code, int quantity, int day, int month, int year, double price) {
 		double sellPeriod = findSellPeriod(quantity, costSold); 
 		Product newProduct = new Product(name, code, quantity, day, month, year, price, sellPeriod);
@@ -35,7 +42,7 @@ public class ProductFactory {
 		return allProducts;
 	}
 
-	protected double findSellPeriod(int quantity, double costSold) {
+	public double findSellPeriod(int quantity, double costSold) {
 		if(quantity != 0 && costSold != 0) {
 			double kta = costSold / quantity; // Calculation of Stock Turnover Ratio based on accounting types
 			return 360 / kta; // Calculation of stock sale period based on accounting types
