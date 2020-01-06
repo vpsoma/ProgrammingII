@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Customer extends NewPurchases {
 	// Creation of a list of customers which obtains the customers that deserve to
 	// take an offer.
-	ArrayList<NewPurchases> newoffered;
+	static ArrayList<NewPurchases> newoffered;
 	ArrayList<NewPurchases> offered = new ArrayList<NewPurchases>();
 	ArrayList <String> totalfee;
 	ArrayList <Integer> counterfees=new ArrayList <Integer>();
@@ -23,14 +23,19 @@ public class Customer extends NewPurchases {
 			ArrayList<NewPurchases> OldCustomers) {
 		NewPurchases newf;
 		newoffered = new ArrayList<NewPurchases>();
+		
+		//A list that contains the total fees of every old customer.
 		totalfee=new ArrayList <String>();
+		
 		// A loop getting every customer.
 		for (int i = 0; i < getOldCustomers().size(); i++) {
+			//A variable that contains the size of the list offered.
 			int sizeoffered = offered.size();
+			
+			//A variable useful in the research to find if a customer has already taken an offer.
 			boolean found = false;
 			int counter = 0;
 			int position;
-			float x=0;
 			// Find out which customer has already taken an offer.
 			do {
 				if (NewPurchases.getOldCustomers().get(counter).getNewName() == offered.get(i).getNewName()) {
@@ -38,25 +43,24 @@ public class Customer extends NewPurchases {
 				}
 			} while (found = false && i == sizeoffered);
 
-			// Putting every customer in a category depending in his total amount/fees.
+			//If the customer hasn't already taken an offer, we calculate hiw total fees.
 			if (found == false) {
 				position = 0;
+				
+				//A variable that transforms into float his integer fees of the current month.
 				float amount = Float.parseFloat(NewPurchases.getOldCustomers().get(counter).getNewFees());
-				//x=Integer.parseInt(totalfee.get(position));
-				// Adding the customers that tend to leave in a list by saving their name and
-				// email.
+				
+				//Adding the customers that tend to leave in a list by saving their name,email and total fees.
 				float a=0f;
 				for (position = 0; position < totalFees.size(); position++) {
 					if (totalFees.get(position).getName() == NewPurchases.getOldCustomers().get(counter).getNewName()) {
-						//x=x+amount;
-						//totalfee.remove(position);
-						//totalfee.add("x");
-						//totalfee.get(position).add(x);
 						a=Float.parseFloat(NewPurchases.getOldCustomers().get(counter).getNewFees())+Float.parseFloat(totalfee.get(position));
 						totalfee.set(position,"a");
 						break;
 					}
 				}
+				
+				//Creating an object type Dbconnection in order to add his fees from the data base into the list.
 				Dbconnection object=new Dbconnection();
 				if (amount < totalFees.get(position).getMin_fees()) {
 					if(counterfees.get(position)==0) {
@@ -73,17 +77,6 @@ public class Customer extends NewPurchases {
 						newoffered.add(newf);
 					}
 				}
-				// Considering the situation that a customer may have already gotten into the
-				// list and saving his latest email.
-				/*for (int j = 0; j < i; j++) {
-					if (NewPurchases.getOldCustomers().get(counter).getNewName() == newoffered.get(j).getNewName()) {
-						newoffered.remove(j);
-						counterfees.set(j,1);
-					}
-					if(counterfees.get(j)==1) {
-						newoffered.set(i, String.parseString(Float.parseFloat(totalfee.get(j))-Dbconnection.getTotalFees().get(position).getT_fees()));
-					}
-				}*/
 			}
 			counter++;
 		}
