@@ -45,7 +45,7 @@ public class Customer extends NewPurchases {
 				//x=Integer.parseInt(totalfee.get(position));
 				// Adding the customers that tend to leave in a list by saving their name and
 				// email.
-				float a;
+				float a=0f;
 				for (position = 0; position < totalFees.size(); position++) {
 					if (totalFees.get(position).getName() == NewPurchases.getOldCustomers().get(counter).getNewName()) {
 						//x=x+amount;
@@ -60,27 +60,30 @@ public class Customer extends NewPurchases {
 				Dbconnection object;
 				if (amount < totalFees.get(position).getMin_fees()) {
 					if(counterfees.get(position)==0) {
-						a=a+object.getTotalFees().get(position).getT_fees();
+						a=a+Dbconnection.getTotalFees().get(position).getT_fees();
 						newf = new NewPurchases(NewPurchases.getOldCustomers().get(counter).getNewName(),
 								NewPurchases.getOldCustomers().get(counter).getNewMail(),
 								totalfee.get(position));
 						newoffered.add(newf);
 						counterfees.set(position,1);
 					}else {
-						a=a
+						newf = new NewPurchases(NewPurchases.getOldCustomers().get(counter).getNewName(),
+								NewPurchases.getOldCustomers().get(counter).getNewMail(),
+								totalfee.get(position));
+						newoffered.add(newf);
 					}
 				}
 				// Considering the situation that a customer may have already gotten into the
 				// list and saving his latest email.
-				/*for (int j = 0; j < i; j++) {
+				for (int j = 0; j < i; j++) {
 					if (NewPurchases.getOldCustomers().get(counter).getNewName() == newoffered.get(j).getNewName()) {
 						newoffered.remove(j);
 						counterfees.set(j,1);
 					}
 					if(counterfees.get(j)==1) {
-					//	newoffered.set(i, String.parseString(Float.parseFloat(totalfee.get(j))-Dbconnection.getTotalFees().get(position).getT_fees()));
+						newoffered.set(i, String.parseString(Float.parseFloat(totalfee.get(j))-Dbconnection.getTotalFees().get(position).getT_fees()));
 					}
-				}*/
+				}
 			}
 			counter++;
 		}
