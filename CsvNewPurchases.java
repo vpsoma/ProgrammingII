@@ -24,8 +24,8 @@ public class CsvNewPurchases {
 	static ArrayList<String> mail = new ArrayList<String>();
 
 	/** Separation of the elements of each line and storage in lists */
-	public static void getsCvData(String[] args) {
-		String csvFile = "C:\\Users\\ioann\\Documents";
+	public void saveCsvData(String path) {
+		String csvFile = path;
 		BufferedReader br = null;
 		String line = "";
 		String cvsSplitBy = ",";
@@ -57,4 +57,5 @@ public class CsvNewPurchases {
 			}
 		}
 	}
+	
 }
