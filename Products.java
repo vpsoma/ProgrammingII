@@ -14,6 +14,23 @@ public class Products {
     	 int yi = Integer.parseInt(ys); // yi=yearint μετατρέπει String σε int
     	 int diff=0;
 	 }
+	 
+	  public int dom(int m, int y) { // dom=DaysOfMonth
+	    	 int z;
+	    	 if ((m % 2 != 0 && m >= 1 && m <= 7) || (m % 2 == 0 && m > 7 && m <= 12)) {
+	    		 z = 31;
+	    	 }
+	    	 else if (m == 2) {
+	    		 if (y % 400 == 0 || (y % 100 != 0 && y % 4 != 0)) {
+	    			 z = 29;
+	    		 } else {
+	    			 z = 28;
+	    		 }
+	    	 } else {
+	    		 z = 30;
+	    	 }
+	    	 return z;
+	  } 
     	 
 	 public void purchase(int code, int quantity) {
 		ArrayList<Integer> samecode = new ArrayList<Integer>(); /*contains days passed*/
