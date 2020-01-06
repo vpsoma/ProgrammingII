@@ -57,10 +57,10 @@ public class Customer extends NewPurchases {
 						break;
 					}
 				}
-				Dbconnection object;
+				Dbconnection object=new Dbconnection();
 				if (amount < totalFees.get(position).getMin_fees()) {
 					if(counterfees.get(position)==0) {
-						a=a+Dbconnection.getTotalFees().get(position).getT_fees();
+						a=a+object.getTotalFees().get(position).getT_fees();
 						newf = new NewPurchases(NewPurchases.getOldCustomers().get(counter).getNewName(),
 								NewPurchases.getOldCustomers().get(counter).getNewMail(),
 								totalfee.get(position));
@@ -75,7 +75,7 @@ public class Customer extends NewPurchases {
 				}
 				// Considering the situation that a customer may have already gotten into the
 				// list and saving his latest email.
-				for (int j = 0; j < i; j++) {
+				/*for (int j = 0; j < i; j++) {
 					if (NewPurchases.getOldCustomers().get(counter).getNewName() == newoffered.get(j).getNewName()) {
 						newoffered.remove(j);
 						counterfees.set(j,1);
@@ -83,7 +83,7 @@ public class Customer extends NewPurchases {
 					if(counterfees.get(j)==1) {
 						newoffered.set(i, String.parseString(Float.parseFloat(totalfee.get(j))-Dbconnection.getTotalFees().get(position).getT_fees()));
 					}
-				}
+				}*/
 			}
 			counter++;
 		}
