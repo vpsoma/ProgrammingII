@@ -57,9 +57,10 @@ public class Customer extends NewPurchases {
 						break;
 					}
 				}
+				Dbconnection object;
 				if (amount < totalFees.get(position).getMin_fees()) {
 					if(counterfees.get(position)==0) {
-						a=a+Dbconnection.getTotalFees().get(position).getT_fees();
+						a=a+object.getTotalFees().get(position).getT_fees();
 						newf = new NewPurchases(NewPurchases.getOldCustomers().get(counter).getNewName(),
 								NewPurchases.getOldCustomers().get(counter).getNewMail(),
 								totalfee.get(position));
