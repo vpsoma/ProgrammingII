@@ -1,42 +1,5 @@
 import java.util.ArrayList;
 
-<<<<<<< HEAD
-public class Customer extends NewPurchasesSeparation {
-	//Creation of a list of customers which obtains the customers that deserve to take an offer
-	ArrayList<NewPurchasesSeparation> offered = new ArrayList<NewPurchasesSeparation>();
-	ArrayList<NewPurchasesSeparation> newoffered;
-	
-	//Evaluation of customers as loyals or not
-	public ArrayList<NewPurchasesSeparation> findLoyals(ArrayList<Databaseconnection> totalFees,ArrayList<NewPurchasesSeparation> newoffered) {
-		NewPurchasesSeparation newf;
-		newoffered = new ArrayList<NewPurchasesSeparation>();
-		
-		//A loop getting every customer
-		for (int i=0;i<getOldCustomers().size();i++) {
-			int sizeoffered=offered.size();
-			boolean found=false;
-			
-			//Find out which customer has already taken an offer
-			do {
-				if ( NewPurchasesSeparation.getNewName()==offered.get(i).getNewName()) {
-					found=true;
-				}
-			}while (found=false||i==sizeoffered);
-			
-			//Putting every customer in a category depending in his total amount/fees
-			if(found ==false) {
-				float totalamount=Integer.parseInt(NewPurchasesSeparation.getNewFees());
-				
-				//Adding the customers that tend to leave in a list by saving their name and email
-				if ( totalamount< Databaseconnection.getMin_fees()) {
-					newf=new NewPurchasesSeparation(NewPurchasesSeparation.getNewName(),NewPurchasesSeparation.getNewMail());
-					newoffered.add(newf);
-				}
-				
-				//Considering the situation that a customer may have already gotten into the list and saving his latest email
-				for(int j=0;j<i;j++) {
-					if(NewPurchasesSeparation.getNewName()==newoffered.get(j).getNewName()) {
-=======
 /**
  * 
  * @author Vassiliki Chalkiopoulou
@@ -45,9 +8,10 @@ public class Customer extends NewPurchasesSeparation {
 public class Customer extends NewPurchases {
 	// Creation of a list of customers which obtains the customers that deserve to
 	// take an offer.
-	ArrayList<NewPurchases> offered = new ArrayList<NewPurchases>();
 	ArrayList<NewPurchases> newoffered;
-
+	ArrayList<NewPurchases> offered = new ArrayList<NewPurchases>();
+	ArrayList <String> totalfee;
+	ArrayList <Integer> counterfees=new ArrayList <Integer>();
 	/**
 	 * Evaluation of customers as loyals or not.
 	 * 
@@ -59,13 +23,14 @@ public class Customer extends NewPurchases {
 			ArrayList<NewPurchases> OldCustomers) {
 		NewPurchases newf;
 		newoffered = new ArrayList<NewPurchases>();
-
+		totalfee=new ArrayList <String>();
 		// A loop getting every customer.
 		for (int i = 0; i < getOldCustomers().size(); i++) {
 			int sizeoffered = offered.size();
 			boolean found = false;
 			int counter = 0;
 			int position;
+			float x=0;
 			// Find out which customer has already taken an offer.
 			do {
 				if (NewPurchases.getOldCustomers().get(counter).getNewName() == offered.get(i).getNewName()) {
@@ -77,28 +42,38 @@ public class Customer extends NewPurchases {
 			if (found == false) {
 				position = 0;
 				float amount = Float.parseFloat(NewPurchases.getOldCustomers().get(counter).getNewFees());
-
+				//x=Integer.parseInt(totalfee.get(position));
 				// Adding the customers that tend to leave in a list by saving their name and
 				// email.
 				for (position = 0; position < totalFees.size(); position++) {
 					if (totalFees.get(position).getName() == NewPurchases.getOldCustomers().get(counter).getNewName()) {
+						//x=x+amount;
+						//totalfee.remove(position);
+						//totalfee.add("x");
+						//totalfee.get(position).add(x);
+						float a=Float.parseFloat(NewPurchases.getOldCustomers().get(counter).getNewFees())+Float.parseFloat(totalfee.get(position));
+						totalfee.set(position,"a");
 						break;
 					}
 				}
 				if (amount < totalFees.get(position).getMin_fees()) {
+					if()
 					newf = new NewPurchases(NewPurchases.getOldCustomers().get(counter).getNewName(),
 							NewPurchases.getOldCustomers().get(counter).getNewMail(),
-							NewPurchases.getOldCustomers().get(counter).getNewFees());
+							totalfee.get(position));
 					newoffered.add(newf);
 				}
 				// Considering the situation that a customer may have already gotten into the
 				// list and saving his latest email.
-				for (int j = 0; j < i; j++) {
+				/*for (int j = 0; j < i; j++) {
 					if (NewPurchases.getOldCustomers().get(counter).getNewName() == newoffered.get(j).getNewName()) {
->>>>>>> 3b353955cc51144545fba45d5022643e736afac9
 						newoffered.remove(j);
+						counterfees.set(j,1);
 					}
-				}
+					if(counterfees.get(j)==1) {
+					//	newoffered.set(i, String.parseString(Float.parseFloat(totalfee.get(j))-Dbconnection.getTotalFees().get(position).getT_fees()));
+					}
+				}*/
 			}
 			counter++;
 		}
