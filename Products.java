@@ -15,6 +15,37 @@ public class Products {
     	 int diff=0;
 	 }
 	 
+	 if (di >= day && mi > month + 1 && yi == year) {
+		 diff = di - day;
+		 for (int x = month; x > mi; x++) {
+			 diff += dom(month, year);
+		 }
+	 } else if (di >= day && mi > month + 1 && yi > year) {
+		 diff = di - day;
+		 if (yi == year + 1) {
+			 if (yi % 400 == 0 || (yi % 100 != 0 && yi % 4 != 0)) {
+				 diff += 366;
+			 } else {
+				 diff += 365;
+			 }
+		 }
+		 for (int x = month; x > mi; x ++) {
+			 diff += dom(x, year);
+		 }
+		 diff += di;
+	 } else if (di < day && mi > month + 1 && yi == year + 1) {
+		 diff = diff += dom(month, year);
+		 for (int i = month + 1; i <= 12; i++) {
+			 diff += dom(i, year);
+		 }
+		 if (mi == 1) {
+			 diff += di;
+		 } else {
+			 for (int i = 1; i <= mi; i++) {
+				 diff += di;
+			 }
+		 }
+	 
 	  public int dom(int m, int y) { // dom=DaysOfMonth
 	    	 int z;
 	    	 if ((m % 2 != 0 && m >= 1 && m <= 7) || (m % 2 == 0 && m > 7 && m <= 12)) {
