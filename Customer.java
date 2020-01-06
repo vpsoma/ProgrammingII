@@ -43,7 +43,7 @@ public class Customer extends NewPurchases {
 				}
 			} while (found = false && i == sizeoffered);
 
-			//If the customer hasn't already taken an offer, we calculate hiw total fees.
+			//If the customer hasn't already taken an offer, we calculate his total fees.
 			if (found == false) {
 				position = 0;
 				
