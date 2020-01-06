@@ -19,7 +19,7 @@ public class Customer extends NewPurchases {
 	 * @param newoffered
 	 * @return
 	 */
-	public ArrayList<NewPurchases> findLoyals(ArrayList<Dbconnection> totalFees, ArrayList<NewPurchases> newoffered,
+	public void findLoyals(ArrayList<Dbconnection> totalFees, ArrayList<NewPurchases> newoffered,
 			ArrayList<NewPurchases> OldCustomers) {
 		NewPurchases newf;
 		newoffered = new ArrayList<NewPurchases>();
@@ -84,7 +84,6 @@ public class Customer extends NewPurchases {
 			}
 			counter++;
 		}
-		return newoffered;
 	}
 
 	/**
