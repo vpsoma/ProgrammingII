@@ -1,8 +1,7 @@
 import java.util.ArrayList;
-
 /**
  * 
- * @author Vassiliki Chalkiopoulou
+ * @author Vasiliki Chalkiopoulou
  *
  */
 public class Customer extends NewPurchases {
@@ -13,11 +12,12 @@ public class Customer extends NewPurchases {
 	ArrayList <String> totalfee;
 	ArrayList <Integer> counterfees=new ArrayList <Integer>();
 	/**
-	 * Evaluation of customers as loyals or not.
-	 * 
+	 * The method doesn't return something.
+	 * It has been created in order to help another class or method
+	 * to accomplish its purpose. 
 	 * @param totalFees
 	 * @param newoffered
-	 * @return
+	 * @param OldCustomers
 	 */
 	public void findLoyals(ArrayList<Dbconnection> totalFees, ArrayList<NewPurchases> newoffered,
 			ArrayList<NewPurchases> OldCustomers) {
