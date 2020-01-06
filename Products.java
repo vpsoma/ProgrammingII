@@ -4,14 +4,14 @@ public class Products {
 	 public int findDays(int day, int month, int year) {
     	 Date date = new Date();
     	 SimpleDateFormat sdfd = new SimpleDateFormat("dd");
-    	 String ds = sdfd.format(date); // ds=dayString
-    	 int di = Integer.parseInt(ds); // di=dayint μετατρέπει String σε int
+    	 String ds = sdfd.format(date); // ds = dayString
+    	 int di = Integer.parseInt(ds); // di = dayint μετατρέπει String σε int
     	 SimpleDateFormat sdfm = new SimpleDateFormat("MM");
-    	 String ms = sdfm.format(date); // ms=monthString
-    	 int mi = Integer.parseInt(ms); // mi=monthint μετατρέπει String σε int
+    	 String ms = sdfm.format(date); // ms = monthString
+    	 int mi = Integer.parseInt(ms); // mi = monthint μετατρέπει String σε int
     	 SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
-    	 String ys = sdfy.format(date); // ys=yearString
-    	 int yi = Integer.parseInt(ys); // yi=yearint μετατρέπει String σε int
+    	 String ys = sdfy.format(date); // ys = yearString
+    	 int yi = Integer.parseInt(ys); // yi = yearint μετατρέπει String σε int
     	 int diff=0;
 	 }
 	 
@@ -32,12 +32,12 @@ public class Products {
 	    	 return z;
 	  } 
     	 
-	  ArrayList<Integer> samecode = new ArrayList<Integer>(); /*contains days passed*/
+	  ArrayList<Integer> samecode = new ArrayList<Integer>(); // contains days passed
 	  ArrayList<Integer> samecodeindex = new ArrayList<Integer>();
 		
 	 public void purchase(int code, int quantity) {
 		int sum = 0;
-		for (int i = 0; i < Arraylist.size() ; i++) { /*arraylist of product class*/
+		for (int i = 0; i < Arraylist.size() ; i++) { // arraylist of product class
 			if (Arraylist.get(i).getCode().equals(code))
 				samecode.add(findDate(Arraylist.get(i)));
 			    samecodeindex.add(i);
