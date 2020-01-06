@@ -5,23 +5,23 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 
+/**
+ * 
+ * @author Maria Aspasia Stefadourou
+ *
+ */
+
 public class Gifts {
 	private int numberOfPoductsAsGifts = 0;
 	private int numberOfPossibleGifts;
-
 	Products c = new Products();
-	
 	ArrayList <Product> leftOverProducts = (ArrayList<Product>) c.createList();
 	ArrayList <NewPurchases> offered = new ArrayList<NewPurchases>();
-	
 	private int sizeOfnewoffered = Customer.newoffered.size();
-	
-	public String[] findGiftsReceivers(ArrayList<Customer> newoffered, ArrayList<Product> leftOverProducts ) {
-		
-		
+	public String[] findGiftsReceivers(ArrayList<Customer> newoffered, ArrayList<Product> leftOverProducts ) {	
 
 	/**
-	 * finding how many products have surpassed their aimed period of being sold and can be 
+	 * find how many products have surpassed their aimed period of being sold and can be 
 	 * given as presents to the customers
 	 */
 	for (int i = 0; i < leftOverProducts.size() ; i++) {
@@ -30,8 +30,8 @@ public class Gifts {
 	}
 	
 	/*
-	 * calculating the possible number of gifts based on the leftover products and the 
-	 * number of customers in !
+	 * calculate the possible number of gifts based on the products that can be gifted and the 
+	 * number of customers that deserve to take an offer
 	 */
 	
 	if (numberOfPoductsAsGifts <= sizeOfnewoffered) {
@@ -44,7 +44,7 @@ public class Gifts {
 	int numberOfGifts = sc.nextInt();
 	
 	/*
-	 * Sorting in descending order list of leftover products based on their price
+	 * Sort in descending order the list of the products that can be gifted based on their price
 	 */
 	Collections.sort(leftOverProducts, new Comparator<Product>() {
 	    public int compare(Product one, Product other) {
@@ -53,7 +53,7 @@ public class Gifts {
 	});
 	
 	/*
-	 * Sorting in descending order list of customers based on their total fees
+	 * Sort in descending order the list of customers that can receive a gift based on their total fees
 	 */
 	Collections.sort(newoffered, new Comparator<NewPurchases>() {
 	    public int compare(NewPurchases one, NewPurchases other) {
@@ -66,7 +66,7 @@ public class Gifts {
 	String namesOfProductsAsGifts [] = new String [numberOfGifts];
 	
 	/*
-	 * matches the customers with their gifts according to their expenses
+	 * Match the customers that are to receive a gift with the products that will be gifted to them according to the customers' expenses
 	 */
 	final int INDEX = 0;
 	final Product p = leftOverProducts.get(INDEX);
@@ -84,4 +84,5 @@ public class Gifts {
 	}
 }
 }
+
 
