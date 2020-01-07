@@ -4,6 +4,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Unit test on Databaseconnection class. This class checks if the
+ * Databaseconnection class receive the correct data from the data base and if
+ * it saves them into the "totalFees" list.
+ * 
+ * @author Ioanna Martini
+ *
+ */
+
 public class DatabaseconnectionTest {
 
 	private static Double t_fees;
@@ -22,10 +31,10 @@ public class DatabaseconnectionTest {
 				//When
 				Databaseconnection.main();
 				Databaseconnection b = new Databaseconnection();
-				String name1 = b.getName();
-				String mail1 = b.getMail();
-				Float min_fees1 = b.getMin_fees();
-				Float t_fees1 = b.getT_fees();
+				String name1 = b.getName(); // It returns the last name that the list "totalFees" contains.
+				String mail1 = b.getMail(); // It returns the last mail that the list "totalFees" contains.
+				Float min_fees1 = b.getMin_fees(); // It returns the last minimum fee that the list "totalFees" contains.
+				Float t_fees1 = b.getT_fees(); // It returns the last summary of fees that the list "totalFees" contains.
 				String input = name1 + mail1 + min_fees1 + t_fees1;
 				String expected = name + mail + min_fees + t_fees;
 				
