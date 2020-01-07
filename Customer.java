@@ -168,14 +168,14 @@ public class Customer extends NewPurchases {
 	 * @param moreoldcustomers
 	 */
 	public void printAllOldCustomers(ArrayList<NewPurchases> OldCustomers,ArrayList<NewPurchases> moreoldcustomers) {
-		for (int i=0 ; i<=NewPurchases.getOldCustomers().size() ; i++) {
+		for (int i=0 ; i<=OldCustomers.size() ; i++) {
 			System.out.print("Name: " + NewPurchases.getOldCustomers().get(i).getNewName());
 			System.out.println("Email: " + NewPurchases.getOldCustomers().get(i).getNewMail());
 		}
 		findMoreOldCustomers();
 		for (int i=0; i<moreoldcustomers.size();i++) {
-			System.out.print("Name: " + NewPurchases.getNewCustomers().get(i).getNewName());
-			System.out.println("Email: " + NewPurchases.getNewCustomers().get(i).getNewMail());
+			System.out.print("Name: " + moreoldcustomers.get(i).getNewName());
+			System.out.println("Email: " + moreoldcustomers.get(i).getNewMail());
 		}
 	}
 	
