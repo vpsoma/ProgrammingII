@@ -19,8 +19,7 @@ public class Customer extends NewPurchases {
 	 * @param newoffered
 	 * @param OldCustomers
 	 */
-	public void findLoyals(ArrayList<Dbconnection> totalFees, ArrayList<NewPurchases> newoffered,
-			ArrayList<NewPurchases> OldCustomers) {
+	public void findLoyals(ArrayList<Dbconnection> totalFees,ArrayList<NewPurchases> OldCustomers) {
 		NewPurchases newf;
 		newoffered = new ArrayList<NewPurchases>();
 		
@@ -82,11 +81,12 @@ public class Customer extends NewPurchases {
 		}
 	}
 
+	ArrayList<NewPurchases> newoldcustomers;
 	/**
 	 * 
 	 * @return
 	 */
-	public ArrayList<NewPurchases> findMoreOldCustomers() {
+	public void findMoreOldCustomers() {
 
 		// It contains the name of every customer.
 		String name;
@@ -107,7 +107,7 @@ public class Customer extends NewPurchases {
 		ArrayList<Integer> counter = new ArrayList<Integer>();
 
 		// A list that contains the customers that have to be transfered to the base.
-		ArrayList<NewPurchases> newoldcustomers = new ArrayList<NewPurchases>();
+		newoldcustomers = new ArrayList<NewPurchases>();
 		NewPurchases newobject;
 
 		// A variable that helps us reach the primary length of the NewCustomers.
@@ -159,6 +159,13 @@ public class Customer extends NewPurchases {
 				counter.remove(a);
 			}
 		} while (sum < lengthoriginal);
-		return newoldcustomers;
 	}
+	
+	public void printAllOldCustomers() {
+		for (int i=0 ; i<=NewPurchases.getOldCustomers().size() ; i++) {
+			System.out.print("Name: " + NewPurchases.getOldCustomers().get(i).getNewName());
+			System.out.println("Email: " + NewPurchases.getOldCustomers().get(i).getNewMail());
+		}
+	}
+}
 }
