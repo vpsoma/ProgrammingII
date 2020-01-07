@@ -22,25 +22,25 @@ public class DatabaseconnectionTest {
 
 	@Test
 	public void test() {
-		//Given
-				t_fees = 8830.7;
-				min_fees = 503.6;
-				mail = "nikiboura@gmail.com";
-				name = "Niki Boura";
-				
-				//When
-				Databaseconnection.main();
-				Databaseconnection b = new Databaseconnection();
-				String name1 = b.getName(); // It returns the last name that the list "totalFees" contains.
-				String mail1 = b.getMail(); // It returns the last mail that the list "totalFees" contains.
-				Float min_fees1 = b.getMin_fees(); // It returns the last minimum fee that the list "totalFees" contains.
-				Float t_fees1 = b.getT_fees(); // It returns the last summary of fees that the list "totalFees" contains.
-				String input = name1 + mail1 + min_fees1 + t_fees1;
-				String expected = name + mail + min_fees + t_fees;
-				
-				//Then
-				assertEquals(expected, input);
-			
+		// Given
+		t_fees = 8830.7;
+		min_fees = 503.6;
+		mail = "nikiboura@gmail.com";
+		name = "Niki Boura";
+
+		// When
+		Databaseconnection.main();
+		Databaseconnection b = new Databaseconnection();
+		String name1 = b.getName(); // It returns the last name that the list "totalFees" contains.
+		String mail1 = b.getMail(); // It returns the last mail that the list "totalFees" contains.
+		Float min_fees1 = b.getMin_fees(); // It returns the last minimum fee that the list "totalFees" contains.
+		Float t_fees1 = b.getT_fees(); // It returns the last summary of fees that the list "totalFees" contains.
+		String input = name1 + mail1 + min_fees1 + t_fees1;
+		String expected = name + mail + min_fees + t_fees;
+
+		// Then
+		assertEquals(expected, input);
+
 	}
 
 }
