@@ -21,10 +21,11 @@ public class Customer extends NewPurchasesSeparation {
 	 * @param newoffered
 	 * @param OldCustomers
 	 */
-	public void findLoyals(ArrayList<Databaseconnection> totalFees, ArrayList<NewPurchasesSeparation> newoffered,
-			ArrayList<NewPurchasesSeparation> OldCustomers) {
-		NewPurchasesSeparation newf;
-		newoffered = new ArrayList<NewPurchasesSeparation>();
+
+	public void findLoyals(ArrayList<Dbconnection> totalFees,ArrayList<NewPurchases> OldCustomers) {
+		NewPurchases newf;
+		newoffered = new ArrayList<NewPurchases>();
+
 		
 		//A list that contains the total fees of every old customer.
 		totalfee=new ArrayList <String>();
@@ -84,11 +85,14 @@ public class Customer extends NewPurchasesSeparation {
 		}
 	}
 
+	ArrayList<NewPurchases> newoldcustomers;
 	/**
 	 * 
 	 * @return
 	 */
-	public ArrayList<NewPurchasesSeparation> findMoreOldCustomers() {
+
+	public void findMoreOldCustomers() {
+
 
 		// It contains the name of every customer.
 		String name;
@@ -109,8 +113,10 @@ public class Customer extends NewPurchasesSeparation {
 		ArrayList<Integer> counter = new ArrayList<Integer>();
 
 		// A list that contains the customers that have to be transfered to the base.
-		ArrayList<NewPurchasesSeparation> newoldcustomers = new ArrayList<NewPurchasesSeparation>();
-		NewPurchasesSeparation newobject;
+
+		newoldcustomers = new ArrayList<NewPurchases>();
+		NewPurchases newobject;
+
 
 		// A variable that helps us reach the primary length of the NewCustomers.
 		int sum = 0;
@@ -161,6 +167,13 @@ public class Customer extends NewPurchasesSeparation {
 				counter.remove(a);
 			}
 		} while (sum < lengthoriginal);
-		return newoldcustomers;
 	}
+	
+	public void printAllOldCustomers() {
+		for (int i=0 ; i<=NewPurchases.getOldCustomers().size() ; i++) {
+			System.out.print("Name: " + NewPurchases.getOldCustomers().get(i).getNewName());
+			System.out.println("Email: " + NewPurchases.getOldCustomers().get(i).getNewMail());
+		}
+	}
+}
 }
