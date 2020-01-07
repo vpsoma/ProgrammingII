@@ -173,4 +173,11 @@ public class Customer extends NewPurchases {
 			System.out.println("Email: " + NewPurchases.getNewCustomers().get(i).getNewMail());
 		}
 	}
+	
+	public void printOfferedCustomers() {
+		for (int i=0 ; i<=offered.size() ; i++) {
+			System.out.print("Name: " + offered.get(i).getNewName());
+			System.out.println("Email: " + offered.get(i).getNewMail());
+		}
+	}
 }
