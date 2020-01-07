@@ -162,7 +162,10 @@ public class Customer extends NewPurchases {
 		} while (sum < lengthoriginal);
 	}
 	
-	public void printAllOldCustomers() {
+	/**
+	 * 
+	 */
+	public void printAllOldCustomers(ArrayList<NewPurchases> OldCustomers,ArrayList<NewPurchases> moreoldcustomers) {
 		for (int i=0 ; i<=NewPurchases.getOldCustomers().size() ; i++) {
 			System.out.print("Name: " + NewPurchases.getOldCustomers().get(i).getNewName());
 			System.out.println("Email: " + NewPurchases.getOldCustomers().get(i).getNewMail());
@@ -174,7 +177,7 @@ public class Customer extends NewPurchases {
 		}
 	}
 	
-	public void printOfferedCustomers() {
+	public void printOfferedCustomers(ArrayList<NewPurchases> offered) {
 		for (int i=0 ; i<=offered.size() ; i++) {
 			System.out.print("Name: " + offered.get(i).getNewName());
 			System.out.println("Email: " + offered.get(i).getNewMail());
