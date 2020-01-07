@@ -3,11 +3,9 @@ package javaProg2;
 import java.util.ArrayList;
 
 /**
- * Separation of the customers.
- * This class checks if the purchases from the csv file
- * have been made by existing or new customers
- * and saves the data into two separated lists 
- * based on this treaty.
+ * Separation of the customers. This class checks if the purchases from the csv
+ * file have been made by existing or new customers and saves the data into two
+ * separated lists based on this treaty.
  * 
  * @author Ioanna Martini
  *
@@ -24,18 +22,17 @@ public class NewPurchasesSeparation extends CsvNewPurchases {
 	private static String newFees;
 	private static Float newfees;
 	private static String newMail;
-	private static int nf=0;
+	private static int nf = 0;
 	/** Creation of a list with the new customers */
 	private static ArrayList<NewPurchasesSeparation> NewCustomers = new ArrayList<NewPurchasesSeparation>();
 
 	/** Checks if the new purchases are from existing customers or not */
 	public static void separateCustomers() {
-		
+
 		OldCustomers = new ArrayList<NewPurchasesSeparation>();
-		
+
 		/*
-		 * Checks if the customer already exists
-		 * if yes, adds his new fees to a new list
+		 * Checks if the customer already exists if yes, adds his new fees to a new list
 		 * if not, adds the new customer to another list
 		 */
 		for (int i = 0; i < name.size(); i++) {
@@ -50,14 +47,24 @@ public class NewPurchasesSeparation extends CsvNewPurchases {
 				}
 				j = j + 1;
 			} while (found == false || j < a.getTotalFees().size());
+
+			/*
+			 * if the name was found to the initial list(totalFees), it adds the customer's
+			 * data to the OldCustomers list because he already exists.
+			 */
 			if (found = true) {
 				newName = name.get(spot);
 				newMonth = month.get(spot);
 				newFees = fees.get(spot);
-				nf=Integer.parseInt(newFees);
+				nf = Integer.parseInt(newFees);
 				newMail = mail.get(spot);
 				newF = new NewPurchasesSeparation(newName, newMonth, nf, newMail);
-			} else {
+			}
+			/*
+			 * if the name doesn't exist in the initial list (totalFees), this is a purchase
+			 * from a new customer so it adds the customer's data to the NewCustomers list.
+			 */
+			else {
 				newName = name.get(i);
 				newMonth = month.get(i);
 				newFees = fees.get(i);
@@ -117,59 +124,58 @@ public class NewPurchasesSeparation extends CsvNewPurchases {
 		NewPurchasesSeparation.newMail = newMail;
 	}
 
-	// Constructor with the arguments that the list OldCustomers contains
-			public NewPurchasesSeparation(String name, String month, int newf, String mail) {
-				name = newName;
-				month = newMonth;
-				newf=nf;
-				mail = newMail;
-				// Adds data to the proper list
-				OldCustomers.add(this);
-			}
-		
-		// Constructor with the arguments that the list NewCustomers contains
-		public NewPurchasesSeparation(String name, String month, String fees, String mail) {
-			name = newName;
-			month = newMonth;
-			fees = newFees;
-			mail = newMail;
-			// Adds data to the proper list
-			NewCustomers.add(this);
-		}
-	
-	/** Default constructor */
-	public NewPurchasesSeparation() {
-		
+	public static Float getNewfees() {
+		return newfees;
 	}
 
-	//Constructor
-		public NewPurchasesSeparation(String newName, String newMail, String newFees) {
-			this.newName=newName;
-			this.newMail=newMail;
-			this.newFees=newFees;
-		}
-		
-		//Constructor
-		/**
-		 * 
-		 * @param name
-		 * @param month
-		 * @param fees
-		 * @param mail
-		 */
-		public NewPurchasesSeparation(String name, String month, Float fees, String mail) {
-			name = newName;
-			month = newMonth;
-			fees = newfees;
-			mail = newMail;
-		}
+	public static void setNewfees(Float newfees) {
+		NewPurchasesSeparation.newfees = newfees;
+	}
 
-		public static Float getNewfees() {
-			return newfees;
-		}
+	// Constructor with the arguments that the list OldCustomers contains
+	public NewPurchasesSeparation(String name, String month, int newf, String mail) {
+		name = newName;
+		month = newMonth;
+		newf = nf;
+		mail = newMail;
+		// Adds data to the proper list
+		OldCustomers.add(this);
+	}
 
-		public static void setNewfees(Float newfees) {
-			NewPurchasesSeparation.newfees = newfees;
-		}
+	// Constructor with the arguments that the list NewCustomers contains
+	public NewPurchasesSeparation(String name, String month, String fees, String mail) {
+		name = newName;
+		month = newMonth;
+		fees = newFees;
+		mail = newMail;
+		// Adds data to the proper list
+		NewCustomers.add(this);
+	}
 
+	/** Default constructor */
+	public NewPurchasesSeparation() {
+
+	}
+
+	// Constructor
+	public NewPurchasesSeparation(String newName, String newMail, String newFees) {
+		this.newName = newName;
+		this.newMail = newMail;
+		this.newFees = newFees;
+	}
+
+	// Constructor
+	/**
+	 * 
+	 * @param name
+	 * @param month
+	 * @param fees
+	 * @param mail
+	 */
+	public NewPurchasesSeparation(String name, String month, Float fees, String mail) {
+		name = newName;
+		month = newMonth;
+		fees = newfees;
+		mail = newMail;
+	}
 }
