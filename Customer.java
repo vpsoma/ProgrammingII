@@ -164,6 +164,8 @@ public class Customer extends NewPurchases {
 	
 	/**
 	 * 
+	 * @param OldCustomers
+	 * @param moreoldcustomers
 	 */
 	public void printAllOldCustomers(ArrayList<NewPurchases> OldCustomers,ArrayList<NewPurchases> moreoldcustomers) {
 		for (int i=0 ; i<=NewPurchases.getOldCustomers().size() ; i++) {
@@ -177,6 +179,10 @@ public class Customer extends NewPurchases {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param offered
+	 */
 	public void printOfferedCustomers(ArrayList<NewPurchases> offered) {
 		for (int i=0 ; i<=offered.size() ; i++) {
 			System.out.print("Name: " + offered.get(i).getNewName());
