@@ -166,6 +166,10 @@ public class Customer extends NewPurchases {
 			System.out.print("Name: " + NewPurchases.getOldCustomers().get(i).getNewName());
 			System.out.println("Email: " + NewPurchases.getOldCustomers().get(i).getNewMail());
 		}
+		findMoreOldCustomers();
+		for (int i=0; i<newoldcustomers.size();i++) {
+			System.out.print("Name: " + NewPurchases.getNewCustomers().get(i).getNewName());
+			System.out.println("Email: " + NewPurchases.getNewCustomers().get(i).getNewMail());
+		}
 	}
-}
 }
