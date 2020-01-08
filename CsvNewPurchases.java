@@ -12,6 +12,8 @@ import java.util.ArrayList;
  * This class takes the new purchases of the company from a csv file,
  * separates the name,mail,fees and the month of each purchase
  * and saves them to separate lists.
+ *
+ * @author Ioanna Martini
  * 
  */
 

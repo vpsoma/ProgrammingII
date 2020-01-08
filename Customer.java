@@ -1,5 +1,3 @@
-package javaprog21;
-
 import java.util.ArrayList;
 /**
  * 
@@ -21,8 +19,7 @@ public class Customer extends NewPurchasesSeparation {
 	 * @param newoffered
 	 * @param OldCustomers
 	 */
-	public void findLoyals(ArrayList<Databaseconnection> totalFees, ArrayList<NewPurchasesSeparation> newoffered,
-			ArrayList<NewPurchasesSeparation> OldCustomers) {
+	public void findLoyals(ArrayList<Databaseconnection> totalFees,ArrayList<NewPurchasesSeparation> OldCustomers) {
 		NewPurchasesSeparation newf;
 		newoffered = new ArrayList<NewPurchasesSeparation>();
 		
@@ -83,12 +80,13 @@ public class Customer extends NewPurchasesSeparation {
 			counter++;
 		}
 	}
-
+	ArrayList<NewPurchasesSeparation> moreoldcustomers=new ArrayList<NewPurchasesSeparation>();
+	ArrayList<NewPurchasesSeparation> newoldcustomers;
 	/**
 	 * 
 	 * @return
 	 */
-	public ArrayList<NewPurchasesSeparation> findMoreOldCustomers() {
+	public void findMoreOldCustomers() {
 
 		// It contains the name of every customer.
 		String name;
@@ -109,7 +107,7 @@ public class Customer extends NewPurchasesSeparation {
 		ArrayList<Integer> counter = new ArrayList<Integer>();
 
 		// A list that contains the customers that have to be transfered to the base.
-		ArrayList<NewPurchasesSeparation> newoldcustomers = new ArrayList<NewPurchasesSeparation>();
+		newoldcustomers = new ArrayList<NewPurchasesSeparation>();
 		NewPurchasesSeparation newobject;
 
 		// A variable that helps us reach the primary length of the NewCustomers.
@@ -154,6 +152,7 @@ public class Customer extends NewPurchasesSeparation {
 							NewPurchasesSeparation.getNewCustomers().get(j).getNewMonth(), amount,
 							NewPurchasesSeparation.getNewCustomers().get(j).getNewMail());
 					newoldcustomers.add(newobject);
+					moreoldcustomers.add(newobject);
 					NewPurchasesSeparation.getNewCustomers().remove(counter.get(a));
 				}
 			}
@@ -161,6 +160,33 @@ public class Customer extends NewPurchasesSeparation {
 				counter.remove(a);
 			}
 		} while (sum < lengthoriginal);
-		return newoldcustomers;
+	}
+	
+	/**
+	 * 
+	 * @param OldCustomers
+	 * @param moreoldcustomers
+	 */
+	public void printAllOldCustomers(ArrayList<NewPurchasesSeparation> OldCustomers,ArrayList<NewPurchasesSeparation> moreoldcustomers) {
+		for (int i=0 ; i<=OldCustomers.size() ; i++) {
+			System.out.print("Name: " + NewPurchasesSeparation.getOldCustomers().get(i).getNewName());
+			System.out.println("Email: " + NewPurchasesSeparation.getOldCustomers().get(i).getNewMail());
+		}
+		findMoreOldCustomers();
+		for (int i=0; i<moreoldcustomers.size();i++) {
+			System.out.print("Name: " + moreoldcustomers.get(i).getNewName());
+			System.out.println("Email: " + moreoldcustomers.get(i).getNewMail());
+		}
+	}
+	
+	/**
+	 * 
+	 * @param offered
+	 */
+	public void printOfferedCustomers(ArrayList<NewPurchasesSeparation> offered) {
+		for (int i=0 ; i<=offered.size() ; i++) {
+			System.out.print("Name: " + offered.get(i).getNewName());
+			System.out.println("Email: " + offered.get(i).getNewMail());
+		}
 	}
 }

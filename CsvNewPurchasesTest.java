@@ -5,7 +5,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
-class CsvNewPurchasesTest {
+/**
+ * Unit test on CsvNewPurchases class.
+ * This class checks if the CsvNewPurchases class 
+ * receive the correct data from the csv file and if it
+ * saves them into the proper list.
+ * 
+ * @author Ioanna Martini
+ *
+ */
+
+public class CsvNewPurchasesTest {
 
 	@Test
 	public void test() {

@@ -52,7 +52,6 @@ public class Databaseconnection {
 				mail = rs.getString("Mail");
 				name = rs.getString("Name");
 				totalF = new Databaseconnection(t_fees, min_fees, mail, name);
-				Databaseconnection.print_test();
 			}
 			rs.close();
 			stmt.close();
@@ -122,16 +121,4 @@ public class Databaseconnection {
 	public Databaseconnection() {
 
 	}
-	
-	/**
-	 * That is a method that is used to check if the data that are archived
-	 * from the data base are correct
-	 */
-	public static void print_test() {
-		System.out.println(Databaseconnection.getName());
-		System.out.println(Databaseconnection.getMail());
-		System.out.println(Databaseconnection.getT_fees());
-		System.out.println(Databaseconnection.getMin_fees());
-	}
-
 }
