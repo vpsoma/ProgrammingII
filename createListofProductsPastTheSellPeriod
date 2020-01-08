@@ -1,0 +1,13 @@
+public List<Product> createListofProductsPastTheSellPeriod() {
+		List <Product> productsPastTheSellPeriod = new ArrayList <Product>(); 
+		for (List<Product> products : ProductFactory.getAllProducts().values()) { 
+			for (Product product : products) { 
+				
+				if (findDifferencebetweenTwoDates(product) - product.getSellPeriod() > 2 ) {
+					productsPastTheSellPeriod.add(product); 
+					ProductFactory.getAllProducts().remove(product);
+	            }
+	        }
+		}
+        return productsPastTheSellPeriod; 
+	} 
