@@ -1,0 +1,13 @@
+public List<Product> createListofProductsPastTheSellPeriod() {
+		List <Product> productsPastTheSellPeriod = new ArrayList <Product>(); // productsPastTheSellPeriod the list contains the products that have passed the sell period
+		for (List<Product> products : ProductFactory.getAllProducts().values()) { // runs the values of all products
+			for (Product product : products) { // 
+				// if the product is sold for more days than the period of sale its moved to the list with the expired products
+				if (findDifferencebetweenTwoDates(product) - product.getSellPeriod() > 2 ) {
+					productsPastTheSellPeriod.add(product); // the product is copied to the list with the expired products
+					ProductFactory.getAllProducts().remove(product);
+	            }
+	        }
+		}
+        return productsPastTheSellPeriod; //the list with the leftover products is returned
+	} 
