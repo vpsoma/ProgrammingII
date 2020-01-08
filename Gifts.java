@@ -17,6 +17,14 @@ public class Gifts {
 	Products c = new Products();
 	ArrayList <Product> productsPassedTheSellPeriod = (ArrayList<Product>) c.createListofProductsPassedTheSellPeriod();
 	ArrayList <NewPurchasesSeparation> offered = new ArrayList<NewPurchasesSeparation>();
+	
+	public ArrayList<NewPurchasesSeparation> getOffered() {
+		return offered;
+	}
+	public void setOffered(ArrayList<NewPurchasesSeparation> offered) {
+		this.offered = offered;
+	}
+	
 	private int sizeOfnewoffered = Customer.newoffered.size();
 	public InfoMail findGiftsReceivers(ArrayList<Customer> newoffered, ArrayList<Product> productsPassedTheSellPeriod ) {	
 
@@ -69,13 +77,13 @@ public class Gifts {
 	 * Match the customers that are to receive a gift with the products that will be gifted to them according to the customers' expenses.
 	 */
 	final int INDEX = 0;
-	final Product p = productsPassedTheSellPeriod.get(INDEX);
+	final Product ProductToBeGifted = productsPassedTheSellPeriod.get(INDEX);
 	for (int i = 0; i <= numberOfGifts; i++) {
-		if (p.getQuantity() > 1) {
-			namesOfProductsAsGifts [i] = p.getName();
-			p.setQuantity(p.getQuantity() - 1); 
-		} else if (p.getQuantity() == 1) {
-			namesOfProductsAsGifts [i] = p.getName();
+		if (ProductToBeGifted.getQuantity() > 1) {
+			namesOfProductsAsGifts [i] = ProductToBeGifted.getName();
+			ProductToBeGifted.setQuantity(ProductToBeGifted.getQuantity() - 1); 
+		} else if (ProductToBeGifted.getQuantity() == 1) {
+			namesOfProductsAsGifts [i] = ProductToBeGifted.getName();
 			productsPassedTheSellPeriod.remove(INDEX);	
 		}
 		namesOfCustomersForGifts [i] = newoffered.get(i).getNewName();
