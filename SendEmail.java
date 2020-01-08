@@ -34,7 +34,7 @@ public class SendEmail {
 		
 		String [] recepients = object.getMailsOfCustomersForGifts();
 		String [] names = object.getNamesOfCustomersForGifts();
-		String [] products_to_offer = object.getNamesOfProductsAsGifts();
+		String [] productsToOffer = object.getNamesOfProductsAsGifts();
 		
 		System.out.println("Ready to send email");
 		Properties properties = new Properties();
@@ -66,7 +66,7 @@ public class SendEmail {
 		 * array
 		 */
 		for (int i = 0; i < recepients.length; i++) {
-			Message message = prepareMessage(session, myAccount, recepients[i], names[i], products_to_offer[i]);
+			Message message = prepareMessage(session, myAccount, recepients[i], names[i], productsToOffer[i]);
 			Transport.send(message);
 		}
 
@@ -79,7 +79,7 @@ public class SendEmail {
 	 * message to be sent
 	 */
 	private static Message prepareMessage(Session session, String myAccount, String recepients, String names,
-			String products_to_offer) {
+			String productToOffer) {
 		try {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(myAccount));
@@ -88,7 +88,7 @@ public class SendEmail {
 			message.setText("Αγαπητέ/ή" + " " + names + "," + System.lineSeparator() + System.lineSeparator()
 					+ "Είμαστε στην ευχάριστη θέση να σας ενημερώσουμε ότι "
 					+ "έφτασε η ώρα να σας επιβραβεύσουμε για την προτίμηση που μας δείχνετε με ένα δώρο για εσάς, ένα προϊόν εντελώς δωρεάν. "
-					+ "Δικαιούστε το προϊόν με τον κωδικό " + products_to_offer
+					+ "Δικαιούστε το προϊόν με τον κωδικό " + productToOffer
 					+ " και μπορείτε να το παραλάβετε στο κατάστημα της επιλογής "
 					+ "σας με το όνομά σας και τον κωδικό του προϊόντος που σας αποστέλλεται." + System.lineSeparator()
 					+ System.lineSeparator() + "Με εκτίμηση, " + "πάντα από εμάς για εσάς!");
