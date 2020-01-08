@@ -1,0 +1,26 @@
+@Test
+	public void createListofProductsPastTheSellPeriodTesta() {
+		
+		//Given
+		List<Product> input = new ArrayList<>();
+		boolean expected = true; 
+		Product producta = new Product("Test", "code", 22, 15, 1, 2019, 12.021, 1.0);
+		
+		input.add(producta);
+		
+		int length_t0 = input.size();
+		
+		//When
+		products.createListofProductsPastTheSellPeriod();
+		
+		boolean c;
+		int length_t1 = input.size();
+		if (length_t0 == length_t1) {
+			c = false;
+			
+		}
+		
+		//then
+		assertEquals(c, expected);
+		
+	}
