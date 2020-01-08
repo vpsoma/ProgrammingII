@@ -104,7 +104,6 @@ public class OptionMenu extends JFrame implements ActionListener {
 					quantOfProduct = Integer.parseInt(JOptionPane.showInputDialog("Please insert quantity"));
 				}
 			}
-
 		});
 		b7.addActionListener(new ActionListener() {
 
@@ -114,7 +113,6 @@ public class OptionMenu extends JFrame implements ActionListener {
 					quantOfProduct = Integer.parseInt(JOptionPane.showInputDialog("Please insert quantity"));
 				}
 			}
-
 		});
 		b8.addActionListener(new ActionListener() {
 
@@ -124,7 +122,6 @@ public class OptionMenu extends JFrame implements ActionListener {
 					quantOfProduct = Integer.parseInt(JOptionPane.showInputDialog("Please insert quantity"));
 				}
 			}
-
 		});
 		b9.addActionListener(new ActionListener() {
 
@@ -134,7 +131,6 @@ public class OptionMenu extends JFrame implements ActionListener {
 					quantOfProduct = Integer.parseInt(JOptionPane.showInputDialog("Please insert quantity"));
 				}
 			}
-
 		});
 		b10.addActionListener(new ActionListener() {
 
@@ -144,7 +140,6 @@ public class OptionMenu extends JFrame implements ActionListener {
 					quantOfProduct = Integer.parseInt(JOptionPane.showInputDialog("Please insert quantity"));
 				}
 			}
-
 		});
 		b11.addActionListener(new ActionListener() {
 
@@ -154,7 +149,6 @@ public class OptionMenu extends JFrame implements ActionListener {
 					quantOfProduct = Integer.parseInt(JOptionPane.showInputDialog("Please insert quantity"));
 				}
 			}
-
 		});
 		b12.addActionListener(new ActionListener() {
 
@@ -164,7 +158,6 @@ public class OptionMenu extends JFrame implements ActionListener {
 					quantOfProduct = Integer.parseInt(JOptionPane.showInputDialog("Please insert quantity"));
 				}
 			}
-
 		});
 		b13.addActionListener(new ActionListener() {
 
@@ -174,7 +167,6 @@ public class OptionMenu extends JFrame implements ActionListener {
 					quantOfProduct = Integer.parseInt(JOptionPane.showInputDialog("Please insert quantity"));
 				}
 			}
-
 		});
 
 		// add ActionListener for the new frame F2 for clicking the product
@@ -230,7 +222,6 @@ public class OptionMenu extends JFrame implements ActionListener {
 					JOptionPane.showMessageDialog(null, "hi");
 				}
 			}
-
 		});
 		button2.addActionListener(new ActionListener() {
 
@@ -240,7 +231,6 @@ public class OptionMenu extends JFrame implements ActionListener {
 					JOptionPane.showMessageDialog(null, "hi");
 				}
 			}
-
 		});
 		button3.addActionListener(new ActionListener() {
 
@@ -250,7 +240,6 @@ public class OptionMenu extends JFrame implements ActionListener {
 					JOptionPane.showMessageDialog(null, "hi");
 				}
 			}
-
 		});
 		button4.addActionListener(new ActionListener() {
 
@@ -260,7 +249,6 @@ public class OptionMenu extends JFrame implements ActionListener {
 					objectOfProductFactory.showAllProdutcs();
 				}
 			}
-
 		});
 
 		// add ActionListener for the new frame F2
@@ -273,9 +261,7 @@ public class OptionMenu extends JFrame implements ActionListener {
 				}
 			}
 		});
-
 	}
-
 	boolean continueLoop1 = true;
 	boolean continueLoop2 = true;
 	boolean continueLoop3 = true;
