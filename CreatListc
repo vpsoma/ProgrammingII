@@ -1,0 +1,9 @@
+public ArrayList<Product> CreateList() {
+		ArrayList <Product> leftOverProducts = new ArrayList <Product>(); // leftoverproducts  η λίστα η οποία θα περιέχει τα προϊόντα που περισσεύουν
+		for (int i = 0 ;i <= Product.prod.size() ; i++) { // Prod: Η λίστα που έχει φτιαχτεί στις παραπάνω μεθόδους και περιέχει όλα τα προϊόντα
+		
+			if (findDays(Product.prod.get(i).getDay(), Product.prod.get(i).getMonth(), Product.prod.get(i).getYear()) - Product.listOfSellPeriod.get(i) > 0 ) {
+				leftOverProducts.add(Product.prod.get(i));
+				Product.prod.remove(i);
+            }
+        }
