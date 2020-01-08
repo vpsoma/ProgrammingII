@@ -1,3 +1,5 @@
+package com.progII.gifthub;
+
 import java.util.Scanner;
 import java.util.Iterator;
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ public class Gifts {
 	private int numberOfPossibleGifts;
 	Products c = new Products();
 	ArrayList <Product> leftOverProducts = (ArrayList<Product>) c.createList();
-	ArrayList <NewPurchases> offered = new ArrayList<NewPurchases>();
+	ArrayList <NewPurchasesSeparation> offered = new ArrayList<NewPurchasesSeparation>();
 	private int sizeOfnewoffered = Customer.newoffered.size();
 	public InfoMail findGiftsReceivers(ArrayList<Customer> newoffered, ArrayList<Product> leftOverProducts ) {	
 
@@ -55,9 +57,9 @@ public class Gifts {
 	/*
 	 * Sort in descending order the list of customers that can receive a gift based on their total fees.
 	 */
-	Collections.sort(newoffered, new Comparator<NewPurchases>() {
-	    public int compare(NewPurchases one, NewPurchases other) {
-	        return other.getNewFees().compareTo(NewPurchases.getNewFees());
+	Collections.sort(newoffered, new Comparator<NewPurchasesSeparation>() {
+	    public int compare(NewPurchasesSeparation one, NewPurchasesSeparation other) {
+	        return other.getNewFees().compareTo(NewPurchasesSeparation.getNewFees());
 	    }
 	});	
 
@@ -80,10 +82,11 @@ public class Gifts {
 		}
 		namesOfCustomersForGifts [i] = newoffered.get(i).getNewName();
 		mailsOfCustomersForGifts [i] = newoffered.get(i).getNewMail();
-		NewPurchases a = new NewPurchases(newoffered.get(i).getNewName(),newoffered.get(i).getNewMail(), newoffered.get(i).getNewFees());
+		NewPurchasesSeparation a = new NewPurchasesSeparation(newoffered.get(i).getNewName(),newoffered.get(i).getNewMail(), newoffered.get(i).getNewFees());
 		offered.add(a);
 	}
 	InfoMail object = new InfoMail (namesOfCustomersForGifts, mailsOfCustomersForGifts, namesOfProductsAsGifts) ;
 	return object;
 }
 }
+
