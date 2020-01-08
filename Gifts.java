@@ -18,7 +18,7 @@ public class Gifts {
 	ArrayList <Product> leftOverProducts = (ArrayList<Product>) c.createList();
 	ArrayList <NewPurchases> offered = new ArrayList<NewPurchases>();
 	private int sizeOfnewoffered = Customer.newoffered.size();
-	public String[] findGiftsReceivers(ArrayList<Customer> newoffered, ArrayList<Product> leftOverProducts ) {	
+	public InfoMail findGiftsReceivers(ArrayList<Customer> newoffered, ArrayList<Product> leftOverProducts ) {	
 
 	/**
 	 * find how many products have surpassed their aimed period of being sold and can be 
@@ -80,9 +80,10 @@ public class Gifts {
 		}
 		namesOfCustomersForGifts [i] = newoffered.get(i).getNewName();
 		mailsOfCustomersForGifts [i] = newoffered.get(i).getNewMail();
-		offered.add(newoffered.get(i).getNewName(),newoffered.get(i).getNewMail());
+		NewPurchases a = new NewPurchases(newoffered.get(i).getNewName(),newoffered.get(i).getNewMail(), newoffered.get(i).getNewFees());
+		offered.add(a);
 	}
+	InfoMail object = new InfoMail (namesOfCustomersForGifts, mailsOfCustomersForGifts, namesOfProductsAsGifts) ;
+	return object;
 }
 }
-
-
