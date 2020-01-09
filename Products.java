@@ -12,18 +12,23 @@ public class Products {
 	    return period.getDays();
 	}
 
+	
+	/**
+	 * It moves products that have surpassed the sell period from the list product to the list productsPastTheSellPeriod 
+	 * @return a list with the products over the sell period 
+	 */
 	public List<Product> createListofProductsPassedTheSellPeriod() {
 		List <Product> productsPassedTheSellPeriod = new ArrayList <Product>(); 
-		for (List<Product> products : ProductFactory.getAllProducts().values()) { // runs the values of all products
+		for (List<Product> products : ProductFactory.getAllProducts().values()) { 
 			for (Product product : products) { 
-				
+
 				if (findDifferencebetweenTwoDates(product) - product.getSellPeriod() > 2 ) {
 					productsPassedTheSellPeriod.add(product); 
 					ProductFactory.getAllProducts().remove(product.getName());
 	            }
 	        }
 		}
-        return productsPassedTheSellPeriod; 
+        return productsPassedTheSellPeriod;
 	} 
 
 
