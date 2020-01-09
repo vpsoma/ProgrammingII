@@ -8,22 +8,19 @@
  */
 
 public class JavaMail extends Thread {
-	
 	public String[] partOfClients;
 	public String[] partOfNames;
 	public String[] partOfProducts;
-	
-	public JavaMail(String[] partOfClients, String[] partOfNames, String[] partOfProducts) {
+	public JavaMail(InfoMail object) {
 		/**
 		 * Initializes the three arrays.
 		 */
 		super();
-		this.partOfClients = partOfClients;
-		this.partOfNames = partOfNames;
-		this.partOfProducts = partOfProducts;
+		this.partOfClients = object.getMailsOfCustomersForGifts();
+		this.partOfNames = object.getNamesOfCustomersForGifts();
+		this.partOfProducts = object.getNamesOfProductsAsGifts();
 	}
-
-
+	InfoMail o = new InfoMail(partOfClients, partOfNames, partOfProducts);
 	public void run(){
 		/**
 		 * This method uses the sendMail method of the SendEmail class 
@@ -37,8 +34,7 @@ public class JavaMail extends Thread {
 		 * @see InterruptedException and Exception.
 		 */
     	try {
-    		SendEmail.sendMail(partOfClients, partOfNames, partOfProducts );
-    		
+    		SendEmail.sendMail(o);
     	}catch(InterruptedException e) {
     		System.out.println("An interruption occured.");
     	} catch(Exception e) {
