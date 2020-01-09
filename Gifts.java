@@ -1,7 +1,5 @@
 import java.util.Scanner;
-import java.util.Iterator;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -16,17 +14,10 @@ public class Gifts {
 	private int numberOfPossibleGifts;
 	Products c = new Products();
 	ArrayList <Product> productsPassedTheSellPeriod = (ArrayList<Product>) c.createListofProductsPassedTheSellPeriod();
-	ArrayList <NewPurchasesSeparation> offered = new ArrayList<NewPurchasesSeparation>();
-	
-	public ArrayList<NewPurchasesSeparation> getOffered() {
-		return offered;
-	}
-	public void setOffered(ArrayList<NewPurchasesSeparation> offered) {
-		this.offered = offered;
-	}
-	
+	Customer c1 = new Customer();
 	private int sizeOfnewoffered = Customer.newoffered.size();
-	public InfoMail findGiftsReceivers(ArrayList<Customer> newoffered, ArrayList<Product> productsPassedTheSellPeriod ) {	
+	
+	public InfoMail findGiftsReceivers(ArrayList<NewPurchasesSeparation> newoffered, ArrayList<Product> productsPassedTheSellPeriod ) {	
 
 	/**
 	 * find how many products have surpassed their aimed period of being sold and can be 
@@ -89,9 +80,11 @@ public class Gifts {
 		namesOfCustomersForGifts [i] = newoffered.get(i).getNewName();
 		mailsOfCustomersForGifts [i] = newoffered.get(i).getNewMail();
 		NewPurchasesSeparation a = new NewPurchasesSeparation(newoffered.get(i).getNewName(),newoffered.get(i).getNewMail(), newoffered.get(i).getNewFees());
-		offered.add(a);
+		c1.getOffered().add(a);
 	}
 	InfoMail object = new InfoMail (namesOfCustomersForGifts, mailsOfCustomersForGifts, namesOfProductsAsGifts) ;
 	return object;
 }
+	
 }
+
