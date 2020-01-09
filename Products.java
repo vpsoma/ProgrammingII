@@ -12,52 +12,70 @@ public class Products {
 	    return period.getDays();
 	}
     	 
-	ArrayList<Integer> samecode = new ArrayList<Integer>(); // contains days passed
-	ArrayList<Integer> samecodeindex = new ArrayList<Integer>();
-		
-	 public void purchase(int code, int quantity) {
-		int sum = 0;
-		for (int i = 0; i < Arraylist.size() ; i++) { // arraylist of product class
-			if (Arraylist.get(i).getCode().equals(code))
-				samecode.add(findDate(Arraylist.get(i)));
-			    samecodeindex.add(i);
-			    sum = sum + Arraylist.get(i).getQuantity();
-		}
-		if (Quantity > sum) {
-			System.out.println("Sorry!We do not have so many items of this product.");
-		    return;
-		} else if (samecode.size() > 1) {
-			boolean sorted = false;
-			while (!sorted) {
-				sorted = true;
-				for (int i = 0; i < samecode.size(); i++) {
-					if (samecode.get(i) < samecode.get(i + 1)) {
-						 int temp1 = samecode.get(i);
-						 samecode.get(i) = samecode.get(i + 1);
-						 samecode.get(i + 1)= temp;
-				         int temp = samecodeindex(i);
-				         samecodeindex(i) = samecodeindex(i + 1);
-				         samecodeindex(i + 1) = temp;
-				         sorted = false;
-					}
-				}
-		    }
-			for (int i = 0; i < samecode.size(); i++) {
-				quantity(quantity);
-			}
-		} else {
-			quantity(quantity);
-		}
+	/**
+	 * It implements a purchase of a customer.
+	 * Given a name of a product, it reduces the number of stock according to the given quantity.
+	 * @param name the name of a product a customer buys
+	 * @param quantity the quantity of a product a customer buys
+	 */
+     public void implementsCustomersPurchase(String name, int quantity) {
+    	 List<Product> productsOfInterest = ProductFactory.getAllProducts().get(name); // 
+    	 long sum = 0;// represents the total stock of the product 
+    	 
+    	 try {
+    		 sum = productsOfInterest.stream().mapToInt(Product::getQuantity).sum(); // calculation of total amount of the product 
+    	 } catch (NullPointerException e) {
+    		 System.err.println("Exception caught: " + e);
+    		 
+    	 }
+    	 
+    	 // Return a message in case the demand quantity is more than the stock.
+    	 if (quantity > sum) {
+    		 System.out.println("Sorry! :( We do not have so many items of this product.");
+    		 return;
+    	 }
+    	 
+    	 // Calls a method to sort the list in decreasing order
+    	 sortMyListBasedOnSellPeriod(productsOfInterest);
+    	 
+    	 // Calls a method to reduce correctly the stock of the product that was sold.
+    	 reduceStocksQuantity(quantity,productsOfInterest);
 	}
-	
-	 public void quantity(int quantity) {
-		if (quantity < Arraylist.get(samecodeindex(i)).getQuantity())
-			Arraylist.get(samecodeindex(i)).setQuantity(Arraylist.get(samecodeindex(i)).getQuantity() - quantity);
-		else if (quantity == Arraylist.get(samecodeindex(i)).getQuantity())
-			Arraylist.remove(samecodeindex(i));
-		else {
-		    quantity = quantity - Arraylist.get(samecodeindex(i)).getQuantity();
-		    Arraylist.remove(samecodeindex(i));
-	    }
-	}
+     /**
+      * It sorts the given list. 
+      * Based on the sell period of the elements the list contains it sorts them in decreasing order.
+      * @param listToSort the list we want to sort
+      */
+     protected void sortMyListBasedOnSellPeriod(List<Product> listToSort) {
+    	 Collections.sort(listToSort, new Comparator<Product>() {
+    		 public int compare(Product one, Product other) {
+    			 return other.getSellPeriod().compareTo(one.getSellPeriod());
+    		 }
+    	 }); 
+     }
+     
+     /**
+      * Given a product quantity and a list with products in stock, it retrospectively subtracts the quantity from the stock. 
+      * @param quantity the quantity which has been sold and needs to be reduced from the stock
+      * @param productList the list of products in stock 
+      */
+     protected void reduceStocksQuantity(int quantity, List<Product> productList) {
+    	 final int INDEX = 0; /* The index will always be zero
+     	                       * because in order to move on to the next item of the list 
+ 							   * a needed condition is to have all previous elements of the zero position removed
+ 							   * and the rest of them moved to the left
+ 							   */
+    	 if (quantity < productList.get(INDEX).getQuantity()) {
+     		 // If the quantity requested is less than that of the first cell, remove it from the existing quantity
+    		 productList.get(INDEX).setQuantity(productList.get(INDEX).getQuantity() - quantity);
+     	 } else if (quantity == productList.get(INDEX).getQuantity()) {
+ 			 // If the quantity requested is equal to the existing quantity just remove the existing quantity 
+     		productList.remove(INDEX);
+ 		 }  else {
+ 			 // if quantity requested outweighs the existing quantity remove the existing and reduce the requested
+ 			quantity = quantity - productList.get(INDEX).getQuantity();
+ 			productList.remove(INDEX);
+ 			reduceStocksQuantity(quantity,productList); // calls quantity() method retrospectively to reduce the stock's quantity
+ 	     }
+      }
 }
