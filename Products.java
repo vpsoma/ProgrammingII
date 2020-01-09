@@ -12,7 +12,7 @@ public class Products {
 	    return period.getDays();
 	}
 	
-	public List<Product> createListofProductsPastTheSellPeriod() {
+	public List<Product> createListofProductsPassedTheSellPeriod() {
 		List <Product> productsPassedTheSellPeriod = new ArrayList <Product>(); 
 		for (List<Product> products : ProductFactory.getAllProducts().values()) { 
 			for (Product product : products) { // 
