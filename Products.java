@@ -11,10 +11,10 @@ public class Products {
 	    Period period = Period.between(now, dateThen); 
 	    return period.getDays();
 	}
-	
+
 	public List<Product> createListofProductsPassedTheSellPeriod() {
 		List <Product> productsPassedTheSellPeriod = new ArrayList <Product>(); 
-		for (List<Product> products : ProductFactory.getAllProducts().values()) { 
+		for (List<Product> products : ProductFactory.getAllProducts().values()) { // runs the values of all products
 			for (Product product : products) { 
 				
 				if (findDifferencebetweenTwoDates(product) - product.getSellPeriod() > 2 ) {
