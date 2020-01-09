@@ -11,15 +11,21 @@ public class Products {
 	    Period period = Period.between(now, dateThen); 
 	    return period.getDays();
 	}
-	public ArrayList<Product> CreateList() {
-		ArrayList <Product> leftOverProducts = new ArrayList <Product>(); // leftoverproducts  η λίστα η οποία θα περιέχει τα προϊόντα που περισσεύουν
-		for (int i = 0 ;i <= Product.prod.size() ; i++) { // Prod: Η λίστα που έχει φτιαχτεί στις παραπάνω μεθόδους και περιέχει όλα τα προϊόντα
-			// αν οι μέρες που πωλείται το προϊόν έχουν υπερβεί τη περίοδο πώλησης τότε αυτό μεταφέρεται στη λίστα με αυτά που περισσεύουν
-			if (findDays(Product.prod.get(i).getDay(), Product.prod.get(i).getMonth(), Product.prod.get(i).getYear()) - Product.listOfSellPeriod.get(i) > 0 ) {
-				leftOverProducts.add(Product.prod.get(i)); // το προϊόν αντιγράφεται στη λίστα με αυτά που περισσεύουν
-				Product.prod.remove(i); // το προϊόν αφαιρείται απο την λίστα με τα προϊόντα
-            }
-        }
+	
+	public List<Product> createListofProductsPastTheSellPeriod() {
+		List <Product> productsPassedTheSellPeriod = new ArrayList <Product>(); 
+		for (List<Product> products : ProductFactory.getAllProducts().values()) { 
+			for (Product product : products) { // 
+				
+				if (findDifferencebetweenTwoDates(product) - product.getSellPeriod() > 2 ) {
+					productsPassedTheSellPeriod.add(product); 
+					ProductFactory.getAllProducts().remove(product());
+	            }
+	        }
+		}
+        return productsPassedTheSellPeriod;
+	} 
+
     	 
 	/**
 	 * It implements a purchase of a customer.
