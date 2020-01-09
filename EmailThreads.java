@@ -5,7 +5,6 @@ import java.util.Arrays;
  * according to the JavaMail class and starts them.
  */
 public class EmailThreads {
-	
 	public static void generateThreads(int numOfClients, String[] Clients, String[] Names, String[] Products) throws Exception {
 		/**
 		 * This method gets a number of mails that need to get sent
@@ -24,7 +23,6 @@ public class EmailThreads {
 		} else {
 			num = numOfClients / 2 + 1;
 		}
-		
 		for(int i = 0; i <= num; i+= 2) {
 			String[] partOfClients = null;
 			String[] partOfNames = null;
@@ -33,12 +31,12 @@ public class EmailThreads {
 				partOfClients =  Arrays.copyOfRange(Clients, i, i + 1);
 				partOfNames = Arrays.copyOfRange(Names,i , i + 1);
 				partOfProducts = Arrays.copyOfRange(Products, i, i + 1);
+				InfoMail object = new InfoMail(partOfClients, partOfNames, partOfProducts);
+				JavaMail t = new JavaMail(object);
+				t.start();
 			} catch (Exception e) {
 				System.out.print("An exception has occured. We are sorry.");
-			}
-			JavaMail t = new JavaMail(partOfClients, partOfNames, partOfProducts);
-			t.start();
+			}	
 		}
 	}
-	
 }
