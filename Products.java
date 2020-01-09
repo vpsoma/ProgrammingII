@@ -11,6 +11,16 @@ public class Products {
 	    Period period = Period.between(now, dateThen); 
 	    return period.getDays();
 	}
+	public ArrayList<Product> CreateList() {
+		ArrayList <Product> leftOverProducts = new ArrayList <Product>(); 
+		for (int i = 0 ;i <= Product.prod.size() ; i++) { 
+			
+			if (findDays(Product.prod.get(i).getDay(), Product.prod.get(i).getMonth(), Product.prod.get(i).getYear()) - Product.listOfSellPeriod.get(i) > 0 ) {
+				leftOverProducts.add(Product.prod.get(i)); 
+				Product.prod.remove(i); 
+            }
+        }
+
     	 
 	/**
 	 * It implements a purchase of a customer.
