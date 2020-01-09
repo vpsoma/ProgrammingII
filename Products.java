@@ -15,18 +15,18 @@ public class Products {
 	public List<Product> createListofProductsPassedTheSellPeriod() {
 		List <Product> productsPassedTheSellPeriod = new ArrayList <Product>(); 
 		for (List<Product> products : ProductFactory.getAllProducts().values()) { 
-			for (Product product : products) { // 
+			for (Product product : products) { 
 				
 				if (findDifferencebetweenTwoDates(product) - product.getSellPeriod() > 2 ) {
 					productsPassedTheSellPeriod.add(product); 
-					ProductFactory.getAllProducts().remove(product());
+					ProductFactory.getAllProducts().remove(product.getName());
 	            }
 	        }
 		}
-        return productsPassedTheSellPeriod;
+        return productsPassedTheSellPeriod; 
 	} 
 
-    	 
+
 	/**
 	 * It implements a purchase of a customer.
 	 * Given a name of a product, it reduces the number of stock according to the given quantity.
