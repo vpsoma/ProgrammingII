@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 public class DatabaseconnectionTest {
 
+	/** Statement of the static fields */
 	private static Double t_fees;
 	private static Double min_fees;
 	private static String mail;

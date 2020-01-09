@@ -16,6 +16,7 @@ public class Databaseconnection {
 
 	/** The list that the data will be saved */
 	static ArrayList<Databaseconnection> totalFees = new ArrayList<Databaseconnection>();
+	/** Statement of the static fields */
 	private static Float t_fees;
 	private static Float min_fees;
 	private static String mail;
