@@ -5,7 +5,54 @@ import java.util.ArrayList;
  *
  */
 public class Customer extends NewPurchasesSeparation {
-	
+	// the customers that deserve to take an offer.
+		static ArrayList<NewPurchasesSeparation> newoffered;
+		static ArrayList<Double> totalfee;
+		ArrayList<Integer> firstcase;
+		ArrayList<Integer> counterfees = new ArrayList<Integer>();
+		ArrayList<NewPurchasesSeparation> offered = new ArrayList<NewPurchasesSeparation>();
+
+		public void addTheNewFees() {
+
+			// A list that contains the total fees of every old customer.
+			totalfee = new ArrayList<Double>();
+			// initializing the list with the total fees of the previous year for every
+			// customer
+			for (int h = 0; h < Databaseconnection.totalFees.size(); h++) {
+				totalfee.add(Databaseconnection.totalFees.get(h).getT_fees());
+			}
+
+			// A list that shows with 1 the customers that reduced a lot their purchases and
+			// with 0 the one's who did not
+			firstcase = new ArrayList<Integer>();
+			// initializing the list with 0
+			for (int l = 0; l < Databaseconnection.totalFees.size(); l++) {
+				firstcase.add(0);
+			}
+
+			// A loop getting every customer.
+			for (int i = 0; i < getOldCustomers().size(); i++) {
+				// finds the position of the customer at the initial list and add his new
+				// purchase to the same position
+				// into the totalfee list.
+				for (int k = 0; k < Databaseconnection.totalFees.size(); k++) {
+					if (NewPurchasesSeparation.getOldCustomers().get(i).getNewName() == Databaseconnection.totalFees.get(k).getName()) {
+						double a = Double.parseDouble(NewPurchasesSeparation.getOldCustomers().get(i).getNewFees())
+								+ totalfee.get(k);
+						totalfee.set(k, a);
+
+						// checks if the new purchase is smaller that the minimun purchase of the
+						// previous year
+						if (Double.parseDouble(NewPurchasesSeparation.getOldCustomers().get(i).getNewFees()) <
+								Databaseconnection.totalFees.get(k).getMin_fees()) {
+							firstcase.set(k, 1);
+						}
+						break;
+					}
+				}
+			}
+		}
+
 	ArrayList<NewPurchasesSeparation> moreoldcustomers=new ArrayList<NewPurchasesSeparation>();
 	ArrayList<NewPurchasesSeparation> newoldcustomers;
 	/**
