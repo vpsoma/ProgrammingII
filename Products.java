@@ -9,7 +9,7 @@ public class Products {
 	     * and saves it to the variable named period 
 	     */
 	    Period period = Period.between(now, dateThen); 
-	    return period.getDays();
+	    return Math.abs(period.getDays());
 	}
 	
 	/**
@@ -20,9 +20,9 @@ public class Products {
 		ArrayList <Product> productsPassedTheSellPeriod = new ArrayList <Product>(); // productsPastTheSellPeriod the list contains the products that have passed the sell period
 		for (List<Product> products : ProductFactory.getAllProducts().values()) { // runs the values of all products
 			for (Product product : products) { // if the product is sold for more days than the period of sale its moved to the list with the expired products
-				if (findDifferencebetweenTwoDates(product) - product.getSellPeriod() > 2 ) {
+				if (findDifferencebetweenTwoDates(product) - product.getSellPeriod() > 0) {
 					productsPassedTheSellPeriod.add(product); // the product is copied to the list with the expired products
-					ProductFactory.getAllProducts().remove(product.getName());
+					ProductFactory.getAllProducts().remove(product);
 	                        }
 	                  }
 		}
@@ -57,11 +57,12 @@ public class Products {
         // Calls a method to reduce correctly the stock of the product that was sold.
         reduceStocksQuantity(quantity,productsOfInterest);
 	}
-    /**
-      * It sorts the given list. 
-      * Based on the sell period of the elements the list contains it sorts them in decreasing order.
-      * @param listToSort the list we want to sort
-      */
+    
+	/**
+     * It sorts the given list. 
+     * Based on the sell period of the elements the list contains it sorts them in decreasing order.
+     * @param listToSort the list we want to sort
+     */
 	protected void sortMyListBasedOnSellPeriod(List<Product> listToSort) {
 		Collections.sort(listToSort, new Comparator<Product>() {
 			public int compare(Product one, Product other) {
