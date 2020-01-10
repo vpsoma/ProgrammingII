@@ -1,7 +1,4 @@
-
 import java.util.Scanner;
-import java.util.Iterator;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,7 +11,7 @@ import java.util.Comparator;
  */
 
 public class Gifts {
-		private int numberOfPoductsAsGifts = 0;
+		private int numberOfPoductsAsGifts;
 		private int numberOfPossibleGifts;
 		Products c = new Products();
 		ArrayList<Product> productsPassedTheSellPeriod = (ArrayList<Product>) c.createListofProductsPassedTheSellPeriod();
@@ -25,16 +22,20 @@ public class Gifts {
 		/**
 		 * find how many products have surpassed their sell period and can be given as presents to the customers.
 		 */
-		public void findNumberOfGifts () {
+		public int findNumberOfProductsAsGifts(ArrayList<Product> productsPassedTheSellPeriod) {
 			for (int i = 0; i < productsPassedTheSellPeriod.size(); i++) {
 				Product prod = productsPassedTheSellPeriod.get(i);
 				numberOfPoductsAsGifts = numberOfPoductsAsGifts + prod.getQuantity();
 			}
-			/*
-			 * calculate the possible number of gifts based on the products that can be
-			 * gifted and the number of customers that deserve to take an offer.
-			 */
-			if (numberOfPoductsAsGifts <= sizeOfnewoffered) {
+			return numberOfPoductsAsGifts;
+		}
+		
+		/**
+		 * calculate the possible number of gifts based on the products that can be
+		 * gifted and the number of customers that deserve to take an offer.
+		 */
+		public int findNumberOfGifts(int numberOfPoductsAsGifts, int sizeOfnewoffered) {
+		 	if (numberOfPoductsAsGifts <= sizeOfnewoffered) {
 				numberOfPossibleGifts = numberOfPoductsAsGifts;
 			} else {
 				numberOfPossibleGifts = sizeOfnewoffered;
@@ -43,8 +44,8 @@ public class Gifts {
 			System.out.println("You can make up to" + numberOfPossibleGifts
 					+ "gifts to your most valuable customers. How many gifts do you wish to make?");
 			int numberOfGifts = sc.nextInt();
-		}
-			
+			return numberOfGifts;
+		}	
 		
 		/**
 		 * Sort in descending order the list of the products that can be gifted based on their price.
@@ -99,7 +100,3 @@ public class Gifts {
 			return object;
 		}
 }
-
-
-
-
