@@ -11,13 +11,14 @@ public class Products {
 	    Period period = Period.between(now, dateThen); 
 	    return period.getDays();
 	}
+	
 	/**
 	 * It moves products that have surpassed the sell period from the list product to the list productsPastTheSellPeriod 
 	 * @return a list with the products over the sell period 
 	 */
 	public ArrayList<Product> createListofProductsPassedTheSellPeriod() {
 		ArrayList <Product> productsPassedTheSellPeriod = new ArrayList <Product>(); // productsPastTheSellPeriod the list contains the products that have passed the sell period
-		for (ArrayList<Product> products : ProductFactory.getAllProducts().values()) { // runs the values of all products
+		for (List<Product> products : ProductFactory.getAllProducts().values()) { // runs the values of all products
 			for (Product product : products) { // if the product is sold for more days than the period of sale its moved to the list with the expired products
 				if (findDifferencebetweenTwoDates(product) - product.getSellPeriod() > 2 ) {
 					productsPassedTheSellPeriod.add(product); // the product is copied to the list with the expired products
@@ -27,6 +28,7 @@ public class Products {
 		}
         return productsPassedTheSellPeriod; //the list with the leftover products is returned
 	} 
+	
 	/**
 	 * It implements a purchase of a customer.
 	 * Given a name of a product, it reduces the number of stock according to the given quantity.
