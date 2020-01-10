@@ -134,9 +134,17 @@ public class NewPurchasesSeparation extends CsvNewPurchases {
 	public static void setNewfees(Float newfees) {
 		NewPurchasesSeparation.newfees = newfees;
 	}
+	
+	public static String getOfferedName() {
+		return offeredName;
+	}
+
+	public static void setOfferedName(String offeredName) {
+		NewPurchasesSeparation.offeredName = offeredName;
+	}
 
 	// Constructor with the arguments that the list OldCustomers contains
-	public NewPurchasesSeparation(String name, String month, int newf, String mail) {
+	public NewPurchasesSeparation(String name, String month, double newf, String mail) {
 		name = newName;
 		month = newMonth;
 		newf = nf;
