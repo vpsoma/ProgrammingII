@@ -16,15 +16,14 @@ public class Databaseconnection {
 
 	/** The list that the data will be saved */
 	static ArrayList<Databaseconnection> totalFees = new ArrayList<Databaseconnection>();
-	/** Statement of the static fields */
-	private static Float t_fees;
-	private static Float min_fees;
+	private static Double t_fees;
+	private static Double min_fees;
 	private static String mail;
 	private static String name;
 	static Databaseconnection totalF;
 
 	//Connection with the sql.server
-	public static void main() {
+	public static void dbconnection() {
 		String url = "jdbc:sqlserver://195.251.249.161:1433;"
 				+ "databaseName=DB29;user=G529;password=59w495f49;";
 		Connection dbcon;
@@ -48,8 +47,8 @@ public class Databaseconnection {
 					"WHERE a.Name = b.Name AND a.Mail = b.Mail\r\n" + 
 					"GROUP BY a.Name,a.Mail");
 			while (rs.next()) {
-				min_fees = rs.getFloat("minf");
-				t_fees = rs.getFloat("sumf");
+				min_fees = rs.getDouble("minf");
+				t_fees = rs.getDouble("sumf");
 				mail = rs.getString("Mail");
 				name = rs.getString("Name");
 				totalF = new Databaseconnection(t_fees, min_fees, mail, name);
@@ -73,19 +72,19 @@ public class Databaseconnection {
 		Databaseconnection.totalF = totalF;
 	}
 
-	public static Float getT_fees() {
+	public static Double getT_fees() {
 		return t_fees;
 	}
 
-	public static void setT_fees(Float t_fees) {
+	public static void setT_fees(Double t_fees) {
 		Databaseconnection.t_fees = t_fees;
 	}
 
-	public static Float getMin_fees() {
+	public static Double getMin_fees() {
 		return min_fees;
 	}
 
-	public static void setMin_fees(Float min_fees) {
+	public static void setMin_fees(Double min_fees) {
 		Databaseconnection.min_fees = min_fees;
 	}
 
@@ -105,12 +104,12 @@ public class Databaseconnection {
 		Databaseconnection.name = name;
 	}
 
-	public ArrayList<Databaseconnection> getTotalFees() {
+	public static ArrayList<Databaseconnection> getTotalFees() {
 		return totalFees;
 	}
 
 	/** Constructor with the arguments that the list contains */
-	public Databaseconnection(Float t_fees, Float min_fees, String mail, String name) {
+	public Databaseconnection(Double t_fees, Double min_fees, String mail, String name) {
 		Databaseconnection.t_fees = t_fees;
 		Databaseconnection.min_fees = min_fees;
 		Databaseconnection.mail = mail;
