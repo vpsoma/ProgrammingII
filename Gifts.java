@@ -1,3 +1,5 @@
+package com.progII.gifthub;
+
 import java.util.Scanner;
 import java.util.Iterator;
 import java.util.ArrayList;
@@ -15,10 +17,57 @@ public class Gifts {
 	private int numberOfPoductsAsGifts = 0;
 	private int numberOfPossibleGifts;
 	Products c = new Products();
+<<<<<<< HEAD
+	ArrayList <Product> leftOverProducts = (ArrayList<Product>) c.createList();
+	ArrayList <NewPurchasesSeparation> offered = new ArrayList<NewPurchasesSeparation>();
+=======
 	ArrayList<Product> productsPassedTheSellPeriod = (ArrayList<Product>) c.createListofProductsPassedTheSellPeriod();
 	Customer c1 = new Customer();
+>>>>>>> 7369311192bca5c0bec635d85e50d1a80b86f5fe
 	private int sizeOfnewoffered = Customer.newoffered.size();
 
+<<<<<<< HEAD
+	/**
+	 * find how many products have surpassed their aimed period of being sold and can be 
+	 * given as presents to the customers.
+	 */
+	for (int i = 0; i < leftOverProducts.size() ; i++) {
+		Product prod = leftOverProducts.get(i);
+		numberOfPoductsAsGifts = numberOfPoductsAsGifts + prod.getQuantity();
+	}
+	
+	/*
+	 * calculate the possible number of gifts based on the products that can be gifted and the 
+	 * number of customers that deserve to take an offer.
+	 */
+	
+	if (numberOfPoductsAsGifts <= sizeOfnewoffered) {
+		numberOfPossibleGifts = numberOfPoductsAsGifts;
+	} else {
+		numberOfPossibleGifts = sizeOfnewoffered;
+	}
+	Scanner sc = new Scanner (System.in);
+	System.out.println("You can make up to" + numberOfPossibleGifts + "gifts to your most valuable customers. How many gifts do you wish to make?");
+	int numberOfGifts = sc.nextInt();
+	
+	/*
+	 * Sort in descending order the list of the products that can be gifted based on their price.
+	 */
+	Collections.sort(leftOverProducts, new Comparator<Product>() {
+	    public int compare(Product one, Product other) {
+	        return other.getPrice().compareTo(one.getPrice());
+	    }
+	});
+	
+	/*
+	 * Sort in descending order the list of customers that can receive a gift based on their total fees.
+	 */
+	Collections.sort(newoffered, new Comparator<NewPurchasesSeparation>() {
+	    public int compare(NewPurchasesSeparation one, NewPurchasesSeparation other) {
+	        return other.getNewFees().compareTo(NewPurchasesSeparation.getNewFees());
+	    }
+	});	
+=======
 	public InfoMail findGiftsReceivers(ArrayList<NewPurchasesSeparation> newoffered,
 			ArrayList<Product> productsPassedTheSellPeriod) {
 
@@ -65,6 +114,7 @@ public class Gifts {
 				return other.getNewFees().compareTo(NewPurchasesSeparation.getNewFees());
 			}
 		});
+>>>>>>> 7369311192bca5c0bec635d85e50d1a80b86f5fe
 
 		String namesOfCustomersForGifts[] = new String[numberOfGifts];
 		String mailsOfCustomersForGifts[] = new String[numberOfGifts];
@@ -90,8 +140,16 @@ public class Gifts {
 					newoffered.get(i).getNewMail(), newoffered.get(i).getNewFees());
 			c1.getOffered().add(a);
 		}
+<<<<<<< HEAD
+		namesOfCustomersForGifts [i] = newoffered.get(i).getNewName();
+		mailsOfCustomersForGifts [i] = newoffered.get(i).getNewMail();
+		NewPurchasesSeparation a = new NewPurchasesSeparation(newoffered.get(i).getNewName(),newoffered.get(i).getNewMail(), newoffered.get(i).getNewFees());
+		offered.add(a);
+=======
 		InfoMail object = new InfoMail(namesOfCustomersForGifts, mailsOfCustomersForGifts, namesOfProductsAsGifts);
 		return object;
+>>>>>>> 7369311192bca5c0bec635d85e50d1a80b86f5fe
 	}
 
 }
+
