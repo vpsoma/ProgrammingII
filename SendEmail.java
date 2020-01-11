@@ -31,11 +31,11 @@ import javax.mail.internet.InternetAddress;
 public class SendEmail {
 
 	public static void sendMail(InfoMail object) throws Exception {
-		
-		String [] recepients = object.getMailsOfCustomersForGifts();
-		String [] names = object.getNamesOfCustomersForGifts();
-		String [] productsToOffer = object.getNamesOfProductsAsGifts();
-		
+
+		String[] recepients = object.getMailsOfCustomersForGifts();
+		String[] names = object.getNamesOfCustomersForGifts();
+		String[] productsToOffer = object.getNamesOfProductsAsGifts();
+
 		System.out.println("Ready to send email");
 		Properties properties = new Properties();
 
@@ -85,13 +85,14 @@ public class SendEmail {
 			message.setFrom(new InternetAddress(myAccount));
 			message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepients));
 			message.setSubject("Ώρα για δώρα!");
-			message.setText("Αγαπητέ/ή" + " " + names + "," + System.lineSeparator() + System.lineSeparator()
-					+ "Είμαστε στην ευχάριστη θέση να σας ενημερώσουμε ότι "
-					+ "έφτασε η ώρα να σας επιβραβεύσουμε για την προτίμηση που μας δείχνετε με ένα δώρο για εσάς, ένα προϊόν εντελώς δωρεάν. "
-					+ "Δικαιούστε το προϊόν " + productToOffer
-					+ " και μπορείτε να το παραλάβετε στο κατάστημα της επιλογής "
-					+ "σας με το όνομά σας και το όνομα του προϊόντος που σας αποστέλλεται." + System.lineSeparator()
-					+ System.lineSeparator() + "Με εκτίμηση, " + "πάντα από εμάς για εσάς!");
+			message.setText("Dear" + " " + names + "," + System.lineSeparator() + System.lineSeparator()
+					+ "We are pleased to announce that "
+					+ "it is time we rewarded you for your loyalty with a present, a product of ours totally free! "
+					+ " We chose for you the product " + productToOffer
+					+ " and you can receive it at our store whenever it is convenient for you "
+					+ "by telling us your name combined to the name of the product that we sent you"
+					+ System.lineSeparator() + System.lineSeparator() + "With our best regards, " + "always with love, "
+					+ System.lineSeparator() + "DetGifthub team");
 			return message;
 		} catch (Exception ex) {
 			Logger.getLogger(SendEmail.class.getName()).log(Level.SEVERE, null, ex);
