@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class NewPurchasesSeparation extends CsvNewPurchases {
 
 	/** Creation of a list with the new fees of the customers */
-	private static ArrayList<NewPurchasesSeparation> OldCustomers;
+	static ArrayList<NewPurchasesSeparation> OldCustomers;
 	// The data that we need
 	private static NewPurchasesSeparation newF;
 	private static String newName;
@@ -22,7 +22,10 @@ public class NewPurchasesSeparation extends CsvNewPurchases {
 	private static String newFees;
 	private static Float newfees;
 	private static String newMail;
-	private static int nf = 0;
+	private static double nf = 0;
+
+	private static String offeredName;
+
 	/** Creation of a list with the new customers */
 	private static ArrayList<NewPurchasesSeparation> NewCustomers = new ArrayList<NewPurchasesSeparation>();
 
@@ -37,16 +40,16 @@ public class NewPurchasesSeparation extends CsvNewPurchases {
 		 */
 		for (int i = 0; i < name.size(); i++) {
 			boolean found = false;
-			int spot = -1;
+			int spot = 0;
 			int j = 0;
-			Databaseconnection a = new Databaseconnection();
+			//Databaseconnection a = new Databaseconnection();
 			do {
-				if (name.get(j) == a.getTotalFees().get(j).getName()) {
+				if (name.get(i) == Databaseconnection.getTotalFees().get(j).getName()) {
 					found = true;
 					spot = j;
 				}
 				j = j + 1;
-			} while (found == false || j < a.getTotalFees().size());
+			} while (found == false && j < Databaseconnection.getTotalFees().size());
 
 			/*
 			 * if the name was found to the initial list(totalFees), it adds the customer's
@@ -56,7 +59,7 @@ public class NewPurchasesSeparation extends CsvNewPurchases {
 				newName = name.get(spot);
 				newMonth = month.get(spot);
 				newFees = fees.get(spot);
-				nf = Integer.parseInt(newFees);
+				nf = Double.parseDouble(newFees);
 				newMail = mail.get(spot);
 				newF = new NewPurchasesSeparation(newName, newMonth, nf, newMail);
 			}
@@ -131,9 +134,17 @@ public class NewPurchasesSeparation extends CsvNewPurchases {
 	public static void setNewfees(Float newfees) {
 		NewPurchasesSeparation.newfees = newfees;
 	}
+	
+	public static String getOfferedName() {
+		return offeredName;
+	}
+
+	public static void setOfferedName(String offeredName) {
+		NewPurchasesSeparation.offeredName = offeredName;
+	}
 
 	// Constructor with the arguments that the list OldCustomers contains
-	public NewPurchasesSeparation(String name, String month, int newf, String mail) {
+	public NewPurchasesSeparation(String name, String month, double newf, String mail) {
 		name = newName;
 		month = newMonth;
 		newf = nf;

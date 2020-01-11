@@ -1,87 +1,118 @@
 import java.util.ArrayList;
+
 /**
  * 
  * @author Vasiliki Chalkiopoulou
  *
  */
 public class Customer extends NewPurchasesSeparation {
-	// Creation of a list of customers which obtains the customers that deserve to
-	// take an offer.
+	// customers that deserve to take an offer.
 	static ArrayList<NewPurchasesSeparation> newoffered;
+	static ArrayList<Double> totalfee;
+	ArrayList<Integer> firstcase;
+	ArrayList<Integer> counterfees = new ArrayList<Integer>();
 	ArrayList<NewPurchasesSeparation> offered = new ArrayList<NewPurchasesSeparation>();
-	ArrayList <String> totalfee;
-	ArrayList <Integer> counterfees=new ArrayList <Integer>();
-	/**
-	 * The method doesn't return something.
-	 * It has been created in order to help another class or method
-	 * to accomplish its purpose. 
-	 * @param totalFees
-	 * @param newoffered
-	 * @param OldCustomers
-	 */
-	public void findLoyals(ArrayList<Databaseconnection> totalFees,ArrayList<NewPurchasesSeparation> OldCustomers) {
-		NewPurchasesSeparation newf;
-		newoffered = new ArrayList<NewPurchasesSeparation>();
-		
-		//A list that contains the total fees of every old customer.
-		totalfee=new ArrayList <String>();
-		
+
+	public void addTheNewFees() {
+
+		// A list that contains the total fees of every old customer.
+		totalfee = new ArrayList<Double>();
+		// initializing the list with the total fees of the previous year for every
+		// customer
+		for (int h = 0; h < Databaseconnection.totalFees.size(); h++) {
+			totalfee.add(Databaseconnection.totalFees.get(h).getT_fees());
+		}
+
+		// A list that shows with 1 the customers that reduced a lot their purchases and
+		// with 0 the one's who did not
+		firstcase = new ArrayList<Integer>();
+		// initializing the list with 0
+		for (int l = 0; l < Databaseconnection.totalFees.size(); l++) {
+			firstcase.add(0);
+		}
+
 		// A loop getting every customer.
 		for (int i = 0; i < getOldCustomers().size(); i++) {
-			//A variable that contains the size of the list offered.
-			int sizeoffered = offered.size();
-			
-			//A variable useful in the research to find if a customer has already taken an offer.
-			boolean found = false;
-			int counter = 0;
-			int position;
-			// Find out which customer has already taken an offer.
-			do {
-				if (NewPurchasesSeparation.getOldCustomers().get(counter).getNewName() == offered.get(i).getNewName()) {
-					found = true;
-				}
-			} while (found = false && i == sizeoffered);
+			// finds the position of the customer at the initial list and add his new
+			// purchase to the same position
+			// into the totalfee list.
+			for (int k = 0; k < Databaseconnection.totalFees.size(); k++) {
+				if (NewPurchasesSeparation.getOldCustomers().get(i).getNewName() == Databaseconnection.totalFees.get(k)
+						.getName()) {
+					double a = Double.parseDouble(NewPurchasesSeparation.getOldCustomers().get(i).getNewFees())
+							+ totalfee.get(k);
+					totalfee.set(k, a);
 
-			//If the customer hasn't already taken an offer, we calculate his total fees.
-			if (found == false) {
-				position = 0;
-				
-				//A variable that transforms into float his integer fees of the current month.
-				float amount = Float.parseFloat(NewPurchasesSeparation.getOldCustomers().get(counter).getNewFees());
-				
-				//Adding the customers that tend to leave in a list by saving their name,email and total fees.
-				float a=0f;
-				for (position = 0; position < totalFees.size(); position++) {
-					if (totalFees.get(position).getName() == NewPurchasesSeparation.getOldCustomers().get(counter).getNewName()) {
-						a=Float.parseFloat(NewPurchasesSeparation.getOldCustomers().get(counter).getNewFees())+Float.parseFloat(totalfee.get(position));
-						totalfee.set(position,"a");
-						break;
+					// checks if the new purchase is smaller that the minimun purchase of the
+					// previous year
+					if (Double.parseDouble(
+							NewPurchasesSeparation.getOldCustomers().get(i).getNewFees()) < Databaseconnection.totalFees
+									.get(k).getMin_fees()) {
+						firstcase.set(k, 1);
 					}
+					break;
 				}
-				
-				//Creating an object type Databaseconnection in order to add his fees from the data base into the list.
-				Databaseconnection object=new Databaseconnection();
-				if (amount < totalFees.get(position).getMin_fees()) {
-					if(counterfees.get(position)==0) {
-						a=a+object.getTotalFees().get(position).getT_fees();
-						newf = new NewPurchasesSeparation(NewPurchasesSeparation.getOldCustomers().get(counter).getNewName(),
-								NewPurchasesSeparation.getOldCustomers().get(counter).getNewMail(),
-								totalfee.get(position));
-						newoffered.add(newf);
-						counterfees.set(position,1);
-					}else {
-						newf = new NewPurchasesSeparation(NewPurchasesSeparation.getOldCustomers().get(counter).getNewName(),
-								NewPurchasesSeparation.getOldCustomers().get(counter).getNewMail(),
-								totalfee.get(position));
+			}
+		}
+	}
+
+	public void findsCustomersThatDiserveAnOffer() {
+
+		NewPurchasesSeparation newf;
+		newoffered = new ArrayList<NewPurchasesSeparation>();
+		boolean found = false;
+		int sizeoffered = offered.size();
+
+		// if no one has get an offer, it sends for an offer the customers that have
+		// reduced a lot their purchases
+		if (sizeoffered == 0) {
+			// for every customer with the firstcase=1 makes an object and adds it into the
+			// list newoffered
+			for (int i = 0; i < firstcase.size(); i++) {
+				if (firstcase.get(i) == 1) {
+					newf = new NewPurchasesSeparation(NewPurchasesSeparation.getOldCustomers().get(i).getNewName(),
+							NewPurchasesSeparation.getOldCustomers().get(i).getNewMail(), "%d" + totalfee.get(i));
+					newoffered.add(newf);
+				}
+			}
+		}
+		// else it sends for an offer the customers that have reduced a lot their
+		// purchases and that have not taken an offer before
+		else {
+			for (int i = 0; i < firstcase.size(); i++) {
+				if (firstcase.get(i) == 1) {
+					for (int j = 0; j < sizeoffered; j++) {
+						if (offered.get(j).getOfferedName() == NewPurchasesSeparation.getOldCustomers().get(i)
+								.getNewName()) {
+							found = true;
+							break;
+						}
+					}
+					if (found == false) {
+						newf = new NewPurchasesSeparation(NewPurchasesSeparation.getOldCustomers().get(i).getNewName(),
+								NewPurchasesSeparation.getOldCustomers().get(i).getNewMail(), "%d" + totalfee.get(i));
 						newoffered.add(newf);
 					}
 				}
 			}
-			counter++;
 		}
 	}
-	ArrayList<NewPurchasesSeparation> moreoldcustomers=new ArrayList<NewPurchasesSeparation>();
+	
+	public ArrayList<NewPurchasesSeparation> getOffered() {
+		return offered;
+	}
+
+	public void setOffered(ArrayList<NewPurchasesSeparation> offered) {
+		this.offered = offered;
+	}
+	
+	public Customer() {
+		
+	}
+
+	ArrayList<NewPurchasesSeparation> moreoldcustomers = new ArrayList<NewPurchasesSeparation>();
 	ArrayList<NewPurchasesSeparation> newoldcustomers;
+
 	/**
 	 * 
 	 * @return
@@ -147,7 +178,8 @@ public class Customer extends NewPurchasesSeparation {
 			 */
 			if (i >= 10) {
 				for (int a = 0; a <= counter.size(); a++) {
-					amount = Float.parseFloat(NewPurchasesSeparation.getNewCustomers().get(counter.get(a)).getNewFees());
+					amount = Float
+							.parseFloat(NewPurchasesSeparation.getNewCustomers().get(counter.get(a)).getNewFees());
 					newobject = new NewPurchasesSeparation(NewPurchasesSeparation.getNewCustomers().get(j).getNewName(),
 							NewPurchasesSeparation.getNewCustomers().get(j).getNewMonth(), amount,
 							NewPurchasesSeparation.getNewCustomers().get(j).getNewMail());
@@ -161,30 +193,31 @@ public class Customer extends NewPurchasesSeparation {
 			}
 		} while (sum < lengthoriginal);
 	}
-	
+
 	/**
 	 * 
 	 * @param OldCustomers
 	 * @param moreoldcustomers
 	 */
-	public void printAllOldCustomers(ArrayList<NewPurchasesSeparation> OldCustomers,ArrayList<NewPurchasesSeparation> moreoldcustomers) {
-		for (int i=0 ; i<=OldCustomers.size() ; i++) {
+	public void printAllOldCustomers(ArrayList<NewPurchasesSeparation> OldCustomers,
+			ArrayList<NewPurchasesSeparation> moreoldcustomers) {
+		for (int i = 0; i <= OldCustomers.size(); i++) {
 			System.out.print("Name: " + NewPurchasesSeparation.getOldCustomers().get(i).getNewName());
 			System.out.println("Email: " + NewPurchasesSeparation.getOldCustomers().get(i).getNewMail());
 		}
 		findMoreOldCustomers();
-		for (int i=0; i<moreoldcustomers.size();i++) {
+		for (int i = 0; i < moreoldcustomers.size(); i++) {
 			System.out.print("Name: " + moreoldcustomers.get(i).getNewName());
 			System.out.println("Email: " + moreoldcustomers.get(i).getNewMail());
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param offered
 	 */
 	public void printOfferedCustomers(ArrayList<NewPurchasesSeparation> offered) {
-		for (int i=0 ; i<=offered.size() ; i++) {
+		for (int i = 0; i <= offered.size(); i++) {
 			System.out.print("Name: " + offered.get(i).getNewName());
 			System.out.println("Email: " + offered.get(i).getNewMail());
 		}

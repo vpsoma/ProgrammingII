@@ -1,114 +1,99 @@
 import java.util.ArrayList;
 
 public class Products {
-	 public int findDays(int day, int month, int year) {
-		 Date date = new Date();
-		 SimpleDateFormat sdfd = new SimpleDateFormat("dd");
-		 String ds = sdfd.format(date); // ds = dayString
-		 int di = Integer.parseInt(ds); // di = dayint μετατρέπει String σε int
-		 SimpleDateFormat sdfm = new SimpleDateFormat("MM");
-		 String ms = sdfm.format(date); // ms = monthString
-		 int mi = Integer.parseInt(ms); // mi = monthint μετατρέπει String σε int
-		 SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
-		 String ys = sdfy.format(date); // ys = yearString
-		 int yi = Integer.parseInt(ys); // yi = yearint μετατρέπει String σε int
-		 int diff=0;
-	 }
-	 
-	 if (di >= day && mi > month + 1 && yi == year) {
-		 diff = di - day;
-		 for (int x = month; x > mi; x++) {
-			 diff += dom(month, year);
-		 }
-	 } else if (di >= day && mi > month + 1 && yi > year) {
-		 diff = di - day;
-		 if (yi == year + 1) {
-			 if (yi % 400 == 0 || (yi % 100 != 0 && yi % 4 != 0)) {
-				 diff += 366;
-			 } else {
-				 diff += 365;
-			 }
-		 }
-		 for (int x = month; x > mi; x ++) {
-			 diff += dom(x, year);
-		 }
-		 diff += di;
-	 } else if (di < day && mi > month + 1 && yi == year + 1) {
-		 diff = diff += dom(month, year);
-		 for (int i = month + 1; i <= 12; i++) {
-			 diff += dom(i, year);
-		 }
-		 if (mi == 1) {
-			 diff += di;
-		 } else {
-			 for (int i = 1; i <= mi; i++) {
-				 diff += di;
-			 }
-		 }
-	 
-	  public int dom(int m, int y) { // dom = DaysOfMonth
-	    	 int z;
-	    	 if ((m % 2 != 0 && m >= 1 && m <= 7) || (m % 2 == 0 && m > 7 && m <= 12)) {
-	    		 z = 31;
-	    	 }
-	    	 else if (m == 2) {
-	    		 if (y % 400 == 0 || (y % 100 != 0 && y % 4 != 0)) {
-	    			 z = 29;
-	    		 } else {
-	    			 z = 28;
-	    		 }
-	    	 } else {
-	    		 z = 30;
-	    	 }
-	    	 return z;
-	  } 
-    	 
-	  ArrayList<Integer> samecode = new ArrayList<Integer>(); // contains days passed
-	  ArrayList<Integer> samecodeindex = new ArrayList<Integer>();
-		
-	 public void purchase(int code, int quantity) {
-		int sum = 0;
-		for (int i = 0; i < Arraylist.size() ; i++) { // arraylist of product class
-			if (Arraylist.get(i).getCode().equals(code))
-				samecode.add(findDate(Arraylist.get(i)));
-			    samecodeindex.add(i);
-			    sum = sum + Arraylist.get(i).getQuantity();
-		}
-		if (Quantity > sum) {
-			System.out.println("Sorry!We do not have so many items of this product.");
-		    return;
-		} else if (samecode.size() > 1) {
-			boolean sorted = false;
-			while (!sorted) {
-				sorted = true;
-				for (int i = 0; i < samecode.size(); i++) {
-					if (samecode.get(i) < samecode.get(i + 1)) {
-						 int temp1 = samecode.get(i);
-						 samecode.get(i) = samecode.get(i + 1);
-						 samecode.get(i + 1)= temp;
-				         int temp = samecodeindex(i);
-				         samecodeindex(i) = samecodeindex(i + 1);
-				         samecodeindex(i + 1) = temp;
-				         sorted = false;
-					}
-				}
-		    }
-			for (int i = 0; i < samecode.size(); i++) {
-				quantity(quantity);
-			}
-		} else {
-			quantity(quantity);
-		}
+	
+	protected Integer findDifferencebetweenTwoDates(Product input) {
+		LocalDate now = LocalDate.now(); // Finds the current date
+	    LocalDate dateThen = LocalDate.of(input.getYear(), input.getMonth(), input.getMonth()); // Changes the date of the input into an object of LocalDate reference type
+	    /* Calls the static method between in order to estimate the days passed between the two parameters given 
+	     * and saves it to the variable named period 
+	     */
+	    Period period = Period.between(now, dateThen); 
+	    return Math.abs(period.getDays());
 	}
 	
-	 public void quantity(int quantity) {
-		if (quantity < Arraylist.get(samecodeindex(i)).getQuantity())
-			Arraylist.get(samecodeindex(i)).setQuantity(Arraylist.get(samecodeindex(i)).getQuantity() - quantity);
-		else if (quantity == Arraylist.get(samecodeindex(i)).getQuantity())
-			Arraylist.remove(samecodeindex(i));
-		else {
-		    quantity = quantity - Arraylist.get(samecodeindex(i)).getQuantity();
-		    Arraylist.remove(samecodeindex(i));
-	    }
+	/**
+	 * It moves products that have surpassed the sell period from the list product to the list productsPastTheSellPeriod 
+	 * @return a list with the products over the sell period 
+	 */
+	public ArrayList<Product> createListofProductsPassedTheSellPeriod() {
+		ArrayList <Product> productsPassedTheSellPeriod = new ArrayList <Product>(); // productsPastTheSellPeriod the list contains the products that have passed the sell period
+		for (List<Product> products : ProductFactory.getAllProducts().values()) { // runs the values of all products
+			for (Product product : products) { // if the product is sold for more days than the period of sale its moved to the list with the expired products
+				if (findDifferencebetweenTwoDates(product) - product.getSellPeriod() > 0) {
+					productsPassedTheSellPeriod.add(product); // the product is copied to the list with the expired products
+					ProductFactory.getAllProducts().remove(product);
+	                        }
+	                  }
+		}
+        return productsPassedTheSellPeriod; //the list with the leftover products is returned
+	} 
+	
+	/**
+	 * It implements a purchase of a customer.
+	 * Given a name of a product, it reduces the number of stock according to the given quantity.
+	 * @param name the name of a product a customer buys
+	 * @param quantity the quantity of a product a customer buys
+	 */
+	public void implementsCustomersPurchase(String name, int quantity) {
+		List<Product> productsOfInterest = ProductFactory.getAllProducts().get(name); // contains the stock of the same product but of different purchase dates
+        long sum = 0;// represents the total stock of the product 
+    	 
+        try {
+        	sum = productsOfInterest.stream().mapToInt(Product::getQuantity).sum(); // calculation of total amount of the product 
+    	} catch (NullPointerException e) {
+    		System.err.println("Exception caught: " + e);
+    	}
+    	 
+        // Return a message in case the demand quantity is more than the stock.
+        if (quantity > sum) {
+        	System.out.println("Sorry! :( We do not have so many items of this product.");
+    	    return;
+    	}
+    	 
+        // Calls a method to sort the list in decreasing order
+        sortMyListBasedOnSellPeriod(productsOfInterest);
+    	 
+        // Calls a method to reduce correctly the stock of the product that was sold.
+        reduceStocksQuantity(quantity,productsOfInterest);
+	}
+    
+	/**
+     * It sorts the given list. 
+     * Based on the sell period of the elements the list contains it sorts them in decreasing order.
+     * @param listToSort the list we want to sort
+     */
+	protected void sortMyListBasedOnSellPeriod(List<Product> listToSort) {
+		Collections.sort(listToSort, new Comparator<Product>() {
+			public int compare(Product one, Product other) {
+				return other.getSellPeriod().compareTo(one.getSellPeriod());
+    		}
+    	}); 
+     }
+     
+     /**
+      * Given a product quantity and a list with products in stock, it retrospectively subtracts the quantity from the stock.
+      *  
+      * @param quantity the quantity which has been sold and needs to be reduced from the stock
+      * @param productList the list of products in stock 
+      */
+	protected void reduceStocksQuantity(int quantity, List<Product> productList) {
+		final int INDEX = 0; /* The index will always be zero
+     	                      * because in order to move on to the next item of the list 
+ 							  * a needed condition is to have all previous elements of the zero position removed
+ 							  * and the rest of them moved to the left
+ 							  */
+		if (quantity < productList.get(INDEX).getQuantity()) {
+			// If the quantity requested is less than that of the first cell, remove it from the existing quantity
+    	    productList.get(INDEX).setQuantity(productList.get(INDEX).getQuantity() - quantity);
+     	} else if (quantity == productList.get(INDEX).getQuantity()) {
+     		// If the quantity requested is equal to the existing quantity just remove the existing quantity 
+     		productList.remove(INDEX);
+ 		} else {
+ 			// if quantity requested outweighs the existing quantity remove the existing and reduce the requested
+ 			quantity = quantity - productList.get(INDEX).getQuantity();
+ 			productList.remove(INDEX);
+ 			reduceStocksQuantity(quantity,productList); // calls quantity() method retrospectively to reduce the stock's quantity
+ 	     }
 	}
 }

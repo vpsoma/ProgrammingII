@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 /**
  * This class refers to the stock of the company.
  * It creates a map that includes the stock and finds the sell period of it.
@@ -23,7 +22,7 @@ public class ProductFactory {
 	 * sell period of the product which is the needed expected period to pass for the product to be sold.
 	 * Then it adds the stock to a map called allProducts.
 	 */
-	public void purchaseTheStock(String name, String code, int quantity, int day, int month, int year, double price) {
+	public Product purchaseOfStock(String name, String code, int quantity, int day, int month, int year, double price) {
 		double sellPeriod = findSellPeriod(quantity, costSold); // findSellPeriod method is called in order to calculate and save the sell period of the product
 		Product newProduct = new Product(name, code, quantity, day, month, year, price, sellPeriod);
 		
@@ -40,6 +39,8 @@ public class ProductFactory {
 			value.add(newProduct);
 			allProducts.put(newProduct.getName(), value);
 		}
+		
+		return newProduct;
 	}
 	
 	public static Map<String,List<Product>> getAllProducts() {
@@ -61,7 +62,7 @@ public class ProductFactory {
 		}
 	}
 
-	public static void setCostSold(double costSold) {
-		ProductFactory.costSold = costSold;
+	public static void setCostSold(double cost) {
+		costSold = cost;
 	}	
 }
