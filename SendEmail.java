@@ -75,8 +75,8 @@ public class SendEmail {
 
 	/**
 	 * Method that is given the account of the sender and the account of the
-	 * recepient, the subject and the message of the mail and returns the whole
-	 * message to be sent
+	 * recepient, the subject and the message of the mail and returns the whole detailed 
+	 * message to be sent 
 	 */
 	private static Message prepareMessage(Session session, String myAccount, String recepients, String names,
 			String productToOffer) {
