@@ -17,7 +17,7 @@ public class Customer extends NewPurchasesSeparation {
 
 		// A list that contains the total fees of every old customer.
 		totalfee = new ArrayList<Double>();
-		// initializing the list with the total fees of the previous year for every
+		// Initializing the list with the total fees of the previous year for every
 		// customer
 		for (int h = 0; h < Databaseconnection.totalFees.size(); h++) {
 			totalfee.add(Databaseconnection.totalFees.get(h).getT_fees());
@@ -26,14 +26,14 @@ public class Customer extends NewPurchasesSeparation {
 		// A list that shows with 1 the customers that reduced a lot their purchases and
 		// with 0 the one's who did not
 		firstcase = new ArrayList<Integer>();
-		// initializing the list with 0
+		// Initializing the list with 0
 		for (int l = 0; l < Databaseconnection.totalFees.size(); l++) {
 			firstcase.add(0);
 		}
 
 		// A loop getting every customer.
 		for (int i = 0; i < getOldCustomers().size(); i++) {
-			// finds the position of the customer at the initial list and add his new
+			// Finds the position of the customer at the initial list and add his new
 			// purchase to the same position
 			// into the totalfee list.
 			for (int k = 0; k < Databaseconnection.totalFees.size(); k++) {
@@ -43,7 +43,7 @@ public class Customer extends NewPurchasesSeparation {
 							+ totalfee.get(k);
 					totalfee.set(k, a);
 
-					// checks if the new purchase is smaller that the minimun purchase of the
+					// Checks if the new purchase is smaller that the minimun purchase of the
 					// previous year
 					if (Double.parseDouble(
 							NewPurchasesSeparation.getOldCustomers().get(i).getNewFees()) < Databaseconnection.totalFees
@@ -63,7 +63,7 @@ public class Customer extends NewPurchasesSeparation {
 		boolean found = false;
 		int sizeoffered = offered.size();
 
-		// if no one has get an offer, it sends for an offer the customers that have
+		// If no one has get an offer, it sends for an offer the customers that have
 		// reduced a lot their purchases
 		if (sizeoffered == 0) {
 			// for every customer with the firstcase=1 makes an object and adds it into the
@@ -76,7 +76,7 @@ public class Customer extends NewPurchasesSeparation {
 				}
 			}
 		}
-		// else it sends for an offer the customers that have reduced a lot their
+		// Else it sends for an offer the customers that have reduced a lot their
 		// purchases and that have not taken an offer before
 		else {
 			for (int i = 0; i < firstcase.size(); i++) {
