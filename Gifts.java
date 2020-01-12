@@ -11,7 +11,9 @@ import java.util.Collections;
 import java.util.Comparator;
 
 /**
- * 
+ * Calculate the gifts that will be send.
+ * This class calculates the maximum number of gifts that can be send, asks the customer company how many of those gifts they wish 
+ * to make, sends to the customers that have the biggest fees the products that are the most expensive as gifts
  * @author Maria Aspasia Stefadourou.
  * 
  */
@@ -47,7 +49,7 @@ public class Gifts {
 		 */
 		public int findNumberOfGifts(int sizeOfnewoffered) {
 			findNumberOfProductsAsGifts(productsPassedTheSellPeriod);
-			//
+			//the maximum number of gifts is equal to the smallest between the number of costumers and the number of products
 			if (numberOfPoductsAsGifts <= sizeOfnewoffered) {
 				numberOfPossibleGifts = numberOfPoductsAsGifts;
 			} else {
