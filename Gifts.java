@@ -21,6 +21,11 @@ public class Gifts {
 		private int numberOfPoductsAsGifts; 
 		private int numberOfPossibleGifts;
 		int numberOfGifts;
+		private InfoMail objectOfInfoMailClass;
+		static String namesOfCustomersForGifts[];
+		static String mailsOfCustomersForGifts[];
+		static String namesOfProductsAsGifts[];
+		SendEmail objectOfSendEmailClass;
 		Products objectOfProductsClass = new Products();
 		ArrayList<Product> productsPassedTheSellPeriod = objectOfProductsClass.createListofProductsPassedTheSellPeriod();
 		int sizeOfnewoffered = Customer.newoffered.size();
