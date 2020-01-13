@@ -93,11 +93,11 @@ public class NewPurchasesSeparation extends CsvNewPurchases {
 
 	/** Creation of getters and setters */
 
-	public ArrayList<NewPurchasesSeparation> getOldCustomers() {
+	public static ArrayList<NewPurchasesSeparation> getOldCustomers() {
 		return OldCustomers;
 	}
 
-	public void setNewFees(ArrayList<NewPurchasesSeparation> newFees) {
+	public static void setNewFees(ArrayList<NewPurchasesSeparation> newFees) {
 		OldCustomers = newFees;
 	}
 
