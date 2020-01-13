@@ -6,7 +6,7 @@ import java.util.ArrayList;
  *
  */
 public class Customer extends NewPurchasesSeparation {
-	// customers that deserve to take an offer.
+	// Customers that deserve to take an offer.
 	static ArrayList<NewPurchasesSeparation> newoffered;
 	static ArrayList<Double> totalfee;
 	ArrayList<Integer> firstcase;
@@ -24,7 +24,7 @@ public class Customer extends NewPurchasesSeparation {
 		}
 
 		// A list that shows with 1 the customers that reduced a lot their purchases and
-		// with 0 the one's who did not
+		// with 0 the one's who did not.
 		firstcase = new ArrayList<Integer>();
 		// Initializing the list with 0
 		for (int l = 0; l < Databaseconnection.totalFees.size(); l++) {
@@ -44,7 +44,7 @@ public class Customer extends NewPurchasesSeparation {
 					totalfee.set(k, a);
 
 					// Checks if the new purchase is smaller that the minimun purchase of the
-					// previous year
+					// previous year.
 					if (Double.parseDouble(
 							NewPurchasesSeparation.getOldCustomers().get(i).getNewFees()) < Databaseconnection.totalFees
 									.get(k).getMin_fees()) {
@@ -64,10 +64,10 @@ public class Customer extends NewPurchasesSeparation {
 		int sizeoffered = offered.size();
 
 		// If no one has get an offer, it sends for an offer the customers that have
-		// reduced a lot their purchases
+		// reduced a lot their purchases.
 		if (sizeoffered == 0) {
-			// for every customer with the firstcase=1 makes an object and adds it into the
-			// list newoffered
+			// For every customer with the firstcase=1 makes an object and adds it into the
+			// list newoffered.
 			for (int i = 0; i < firstcase.size(); i++) {
 				if (firstcase.get(i) == 1) {
 					newf = new NewPurchasesSeparation(NewPurchasesSeparation.getOldCustomers().get(i).getNewName(),
@@ -77,7 +77,7 @@ public class Customer extends NewPurchasesSeparation {
 			}
 		}
 		// Else it sends for an offer the customers that have reduced a lot their
-		// purchases and that have not taken an offer before
+		// purchases and that have not taken an offer before.
 		else {
 			for (int i = 0; i < firstcase.size(); i++) {
 				if (firstcase.get(i) == 1) {
