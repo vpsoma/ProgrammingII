@@ -1,8 +1,5 @@
-/*
- * SendEmail class
+/* SendEmail class
  */
-
-package com.progII.gifthub;
 
 import java.util.Properties;
 import java.util.Scanner;
@@ -30,11 +27,15 @@ import javax.mail.internet.InternetAddress;
  */
 public class SendEmail {
 
+<<<<<<< HEAD
 	public static void sendMail(InfoMail object) throws Exception {
 
 		String[] recepients = object.getMailsOfCustomersForGifts();
 		String[] names = object.getNamesOfCustomersForGifts();
 		String[] productsToOffer = object.getNamesOfProductsAsGifts();
+=======
+	public void sendMail(String [] recepients,String [] names,String [] productsToOffer) throws Exception{
+>>>>>>> 4d8bc860502573e6f9b1b5154c25172c73c4160f
 
 		System.out.println("Ready to send email");
 		Properties properties = new Properties();
@@ -84,6 +85,7 @@ public class SendEmail {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(myAccount));
 			message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepients));
+<<<<<<< HEAD
 			message.setSubject("Ώρα για δώρα!");
 			message.setText("Dear" + " " + names + "," + System.lineSeparator() + System.lineSeparator()
 					+ "We are pleased to announce that "
@@ -93,6 +95,16 @@ public class SendEmail {
 					+ "by telling us your name combined to the name of the product that we sent you"
 					+ System.lineSeparator() + System.lineSeparator() + "With our best regards, " + "always with love, "
 					+ System.lineSeparator() + "DetGifthub team");
+=======
+			message.setSubject("Ξ�Ο�Ξ± Ξ³ΞΉΞ± Ξ΄Ο�Ο�Ξ±!");
+			message.setText("Ξ‘Ξ³Ξ±Ο€Ξ·Ο„Ξ­/Ξ®" + " " + names + "," + System.lineSeparator() + System.lineSeparator()
+					+ "Ξ•Ξ―ΞΌΞ±ΟƒΟ„Ξµ ΟƒΟ„Ξ·Ξ½ ΞµΟ…Ο‡Ξ¬Ο�ΞΉΟƒΟ„Ξ· ΞΈΞ­ΟƒΞ· Ξ½Ξ± ΟƒΞ±Ο‚ ΞµΞ½Ξ·ΞΌΞµΟ�Ο�ΟƒΞΏΟ…ΞΌΞµ Ο�Ο„ΞΉ "
+					+ "Ξ­Ο†Ο„Ξ±ΟƒΞµ Ξ· Ο�Ο�Ξ± Ξ½Ξ± ΟƒΞ±Ο‚ ΞµΟ€ΞΉΞ²Ο�Ξ±Ξ²ΞµΟ�ΟƒΞΏΟ…ΞΌΞµ Ξ³ΞΉΞ± Ο„Ξ·Ξ½ Ο€Ο�ΞΏΟ„Ξ―ΞΌΞ·ΟƒΞ· Ο€ΞΏΟ… ΞΌΞ±Ο‚ Ξ΄ΞµΞ―Ο‡Ξ½ΞµΟ„Ξµ ΞΌΞµ Ξ­Ξ½Ξ± Ξ΄Ο�Ο�ΞΏ Ξ³ΞΉΞ± ΞµΟƒΞ¬Ο‚, Ξ­Ξ½Ξ± Ο€Ο�ΞΏΟ�Ο�Ξ½ ΞµΞ½Ο„ΞµΞ»Ο�Ο‚ Ξ΄Ο‰Ο�ΞµΞ¬Ξ½. "
+					+ "Ξ”ΞΉΞΊΞ±ΞΉΞΏΟ�ΟƒΟ„Ξµ Ο„ΞΏ Ο€Ο�ΞΏΟ�Ο�Ξ½ ΞΌΞµ Ο„ΞΏΞ½ ΞΊΟ‰Ξ΄ΞΉΞΊΟ� " + productToOffer
+					+ " ΞΊΞ±ΞΉ ΞΌΟ€ΞΏΟ�ΞµΞ―Ο„Ξµ Ξ½Ξ± Ο„ΞΏ Ο€Ξ±Ο�Ξ±Ξ»Ξ¬Ξ²ΞµΟ„Ξµ ΟƒΟ„ΞΏ ΞΊΞ±Ο„Ξ¬ΟƒΟ„Ξ·ΞΌΞ± Ο„Ξ·Ο‚ ΞµΟ€ΞΉΞ»ΞΏΞ³Ξ®Ο‚ "
+					+ "ΟƒΞ±Ο‚ ΞΌΞµ Ο„ΞΏ Ο�Ξ½ΞΏΞΌΞ¬ ΟƒΞ±Ο‚ ΞΊΞ±ΞΉ Ο„ΞΏΞ½ ΞΊΟ‰Ξ΄ΞΉΞΊΟ� Ο„ΞΏΟ… Ο€Ο�ΞΏΟ�Ο�Ξ½Ο„ΞΏΟ‚ Ο€ΞΏΟ… ΟƒΞ±Ο‚ Ξ±Ο€ΞΏΟƒΟ„Ξ­Ξ»Ξ»ΞµΟ„Ξ±ΞΉ." + System.lineSeparator()
+					+ System.lineSeparator() + "Ξ�Ξµ ΞµΞΊΟ„Ξ―ΞΌΞ·ΟƒΞ·, " + "Ο€Ξ¬Ξ½Ο„Ξ± Ξ±Ο€Ο� ΞµΞΌΞ¬Ο‚ Ξ³ΞΉΞ± ΞµΟƒΞ¬Ο‚!");
+>>>>>>> 4d8bc860502573e6f9b1b5154c25172c73c4160f
 			return message;
 		} catch (Exception ex) {
 			Logger.getLogger(SendEmail.class.getName()).log(Level.SEVERE, null, ex);
