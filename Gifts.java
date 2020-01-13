@@ -15,7 +15,6 @@ import java.util.Comparator;
  * This class calculates the maximum number of gifts that can be send, asks the customer company how many of those gifts they wish 
  * to make, sends to the customers that have the biggest fees the products that are the most expensive as gifts
  * @author Maria Aspasia Stefadourou.
- * 
  */
 
 public class Gifts {
@@ -105,16 +104,15 @@ public class Gifts {
 		 * gifted to them according to the customers' expenses and the products' prices
 		 * @param input a list with the products over the sell period sorted in descending order
 		 * @param input a list with the costumers that deserve to be gifted sorted in descending order
-		 * @return an object of type InfoMail
 		 */
-		public InfoMail findGiftsReceivers(ArrayList<NewPurchasesSeparation> newoffered,
-			ArrayList<Product> productsPassedTheSellPeriod) {
+		public void  findGiftsReceivers(ArrayList<NewPurchasesSeparation> newoffered,
+			ArrayList<Product> productsPassedTheSellPeriod) throws Exception {
 			sortMyListBasedOnThePrice(productsPassedTheSellPeriod);
 			sortMyListBasedOnTheTotalFees(newoffered);
 			askNumberOfGifts();
-			String namesOfCustomersForGifts[] = new String[numberOfGifts];
-			String mailsOfCustomersForGifts[] = new String[numberOfGifts];
-			String namesOfProductsAsGifts[] = new String[numberOfGifts];
+			namesOfCustomersForGifts = new String[numberOfGifts];
+			mailsOfCustomersForGifts = new String[numberOfGifts];
+			namesOfProductsAsGifts = new String[numberOfGifts];
 			final int INDEX = 0;
 			Product ProductToBeGifted = productsPassedTheSellPeriod.get(INDEX);
 			for (int i = 0; i < numberOfGifts; i++) {
@@ -129,13 +127,10 @@ public class Gifts {
 				mailsOfCustomersForGifts[i] = newoffered.get(i).getNewMail();
 				updateOfferedInDataBase(Customer.newoffered.get(i).getNewName(),Customer.newoffered.get(i).getNewMail());
 			}
-			InfoMail object = new InfoMail(namesOfCustomersForGifts, mailsOfCustomersForGifts, namesOfProductsAsGifts);
-			return object;
+			objectOfSendEmailClass = new SendEmail();
+			objectOfSendEmailClass.sendMail(mailsOfCustomersForGifts, namesOfCustomersForGifts, namesOfProductsAsGifts);
 		}
 		
-		/**
-		 * 
-		 */
 		public void updateOfferedInDataBase(String name, String mail) {
 			String url = "jdbc:sqlserver://195.251.249.161:1433;"
 					+ "databaseName=DB29;user=G529;password=59w495f49;";
@@ -165,6 +160,40 @@ public class Gifts {
 			}
 
 		}
+		
+		
+		public static String[] getNamesOfCustomersForGifts() {
+			return namesOfCustomersForGifts;
+		}
+
+		public static void setNamesOfCustomersForGifts(String[] namesOfCustomersForGifts) {
+			Gifts.namesOfCustomersForGifts = namesOfCustomersForGifts;
+		}
+
+		public static String[] getMailsOfCustomersForGifts() {
+			return mailsOfCustomersForGifts;
+		}
+
+		public static void setMailsOfCustomersForGifts(String[] mailsOfCustomersForGifts) {
+			Gifts.mailsOfCustomersForGifts = mailsOfCustomersForGifts;
+		}
+
+		public static String[] getNamesOfProductsAsGifts() {
+			return namesOfProductsAsGifts;
+		}
+
+		public static void setNamesOfProductsAsGifts(String[] namesOfProductsAsGifts) {
+			Gifts.namesOfProductsAsGifts = namesOfProductsAsGifts;
+		}
+
+		public InfoMail getObjectOfInfoMailClass() {
+			return objectOfInfoMailClass;
+		}
+
+		public void setObjectOfInfoMailClass(InfoMail objectOfInfoMailClass) {
+			this.objectOfInfoMailClass = objectOfInfoMailClass;
+		}
+
 		public Gifts() {
 			
 		}
