@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class Customer extends NewPurchasesSeparation {
 
-	// take an offer
+	// Customers that deserve to take an offer.
 	private String offeredMail, offeredName;
 	private Customer offer;
 	static ArrayList<NewPurchasesSeparation> newoffered;
@@ -71,11 +71,9 @@ public class Customer extends NewPurchasesSeparation {
 		newoffered = new ArrayList<NewPurchasesSeparation>();
 		boolean found = false;
 		int sizeoffered = offered.size();
-		System.out.print(sizeoffered);
 		// if no one has get an offer, it sends for an offer the customers that have
 		// reduced a lot their purchases
 		if (sizeoffered == 0) {
-			System.out.print("*");
 			// for every customer with the firstcase=1 makes an object and adds it into the
 			// list newoffered
 			for (int i = 0; i < firstcase.size(); i++) {
@@ -101,8 +99,6 @@ public class Customer extends NewPurchasesSeparation {
 					if (found == false) {
 						newf = new NewPurchasesSeparation(Databaseconnection.totalFees.get(i).getName(),
 								Databaseconnection.totalFees.get(i).getMail(), String.valueOf(totalfee.get(i)));
-						System.out.println(Databaseconnection.totalFees.get(i).getName());
-						System.out.println("yeei");
 						newoffered.add(newf);
 					}
 				}
