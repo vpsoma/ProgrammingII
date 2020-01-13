@@ -1,4 +1,3 @@
-import java.util.Scanner;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -118,8 +117,9 @@ public class Gifts {
 			mailsOfCustomersForGifts = new String[numberOfGifts];
 			namesOfProductsAsGifts = new String[numberOfGifts];
 			final int INDEX = 0;
-			Product ProductToBeGifted = productsPassedTheSellPeriod.get(INDEX);
+			Product ProductToBeGifted = productsPassedTheSellPeriod.get(INDEX); //the fist of the list of products
 			for (int i = 0; i < numberOfGifts; i++) {
+			
 				if (ProductToBeGifted.getQuantity() > 1) {
 					namesOfProductsAsGifts[i] = ProductToBeGifted.getName();
 					ProductToBeGifted.setQuantity(ProductToBeGifted.getQuantity() - 1);
@@ -135,6 +135,11 @@ public class Gifts {
 			objectOfSendEmailClass.sendMail(mailsOfCustomersForGifts, namesOfCustomersForGifts, namesOfProductsAsGifts);
 		}
 		
+		/**
+		 * Update the list offered in database
+		 * @param the name of the customer that received a gift
+		 * @param the mail of the customer that received a gift
+		 */
 		public void updateOfferedInDataBase(String name, String mail) {
 			String url = "jdbc:sqlserver://195.251.249.161:1433;"
 					+ "databaseName=DB29;user=G529;password=59w495f49;";
