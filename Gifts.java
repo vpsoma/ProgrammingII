@@ -113,17 +113,20 @@ public class Gifts {
 			sortMyListBasedOnThePrice(productsPassedTheSellPeriod);
 			sortMyListBasedOnTheTotalFees(newoffered);
 			askNumberOfGifts();
+			//if our company customer wants to send gifts to their most valuable customers 
+			if (numberOfGifts != 0) {
 			namesOfCustomersForGifts = new String[numberOfGifts];
 			mailsOfCustomersForGifts = new String[numberOfGifts];
 			namesOfProductsAsGifts = new String[numberOfGifts];
 			final int INDEX = 0;
 			Product ProductToBeGifted = productsPassedTheSellPeriod.get(INDEX); //the fist of the list of products
 			for (int i = 0; i < numberOfGifts; i++) {
-			
 				if (ProductToBeGifted.getQuantity() > 1) {
+					//if the quantity of the first product of the list is more than one the product is gifted and the quantity of that product is reduced by one in the list 
 					namesOfProductsAsGifts[i] = ProductToBeGifted.getName();
 					ProductToBeGifted.setQuantity(ProductToBeGifted.getQuantity() - 1);
 				} else if (ProductToBeGifted.getQuantity() == 1){
+					//if the quantity of the first product of the list is equal to one the product is gifted and the product is removed from the list 
 					namesOfProductsAsGifts[i] = ProductToBeGifted.getName();
 					productsPassedTheSellPeriod.remove(INDEX);
 				}
@@ -133,6 +136,7 @@ public class Gifts {
 			}
 			objectOfSendEmailClass = new SendEmail();
 			objectOfSendEmailClass.sendMail(mailsOfCustomersForGifts, namesOfCustomersForGifts, namesOfProductsAsGifts);
+			}
 		}
 		
 		/**
