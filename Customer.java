@@ -6,9 +6,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
- * Figuring out which customer has to take an offer
- * by evaluating his fees and the fact that he might have 
- * already taken an offer.
+ * Figuring out which customer has to take an offer by evaluating his fees and
+ * the fact that he might have already taken an offer.
+ * 
  * @author Vasiliki Chalkiopoulou
  *
  */
@@ -26,8 +26,8 @@ public class Customer extends NewPurchasesSeparation {
 	NewPurchasesSeparation objectOfNewPurchasesSeparation = new NewPurchasesSeparation();
 
 	/**
-	 * This method calculates the total fees of every old customer
-	 * including thos that exist in the data base.
+	 * This method calculates the total fees of every old customer including thos
+	 * that exist in the data base.
 	 */
 	public void addTheNewFees() {
 
@@ -52,15 +52,15 @@ public class Customer extends NewPurchasesSeparation {
 			// purchase to the same position
 			// into the totalfee list.
 			for (int k = 0; k < Databaseconnection.totalFees.size(); k++) {
-				if ((NewPurchasesSeparation.OldCustomers.get(i).getNewName()).equals(Databaseconnection.totalFees.get(k).getName())) {
+				if ((NewPurchasesSeparation.OldCustomers.get(i).getNewName())
+						.equals(Databaseconnection.totalFees.get(k).getName())) {
 					double a = NewPurchasesSeparation.OldCustomers.get(i).getNf() + totalfee.get(k);
 					totalfee.set(k, a);
-					
 
 					// Checks if the new purchase is smaller that the minimun purchase of the
 					// previous year.
-					if (NewPurchasesSeparation.OldCustomers.get(i).getNf() <
-							Databaseconnection.totalFees.get(k).getMin_fees()) {
+					if (NewPurchasesSeparation.OldCustomers.get(i).getNf() < Databaseconnection.totalFees.get(k)
+							.getMin_fees()) {
 						firstcase.set(k, 1);
 					}
 					break;
@@ -71,12 +71,11 @@ public class Customer extends NewPurchasesSeparation {
 
 	/**
 	 * This method ,after having the total amount of expenses of every customer
-	 * finds out if a customer that has thw specific month 
-	 * lower expenses than the usual can take a gift if he hasn't get 
-	 * any till now.
+	 * finds out if a customer that has thw specific month lower expenses than the
+	 * usual can take a gift if he hasn't get any till now.
 	 */
-	public ArrayList<NewPurchasesSeparation>  findsCustomersThatDeserveAnOffer() {
-		Customer object=new Customer();
+	public ArrayList<NewPurchasesSeparation> findsCustomersThatDeserveAnOffer() {
+		Customer object = new Customer();
 		object.addTheNewFees();
 		createOfferedArrayList();
 		NewPurchasesSeparation newf;
@@ -101,7 +100,7 @@ public class Customer extends NewPurchasesSeparation {
 		else {
 			for (int i = 0; i < firstcase.size(); i++) {
 				if (firstcase.get(i) == 1) {
-					found=false;
+					found = false;
 					for (int j = 0; j < sizeoffered; j++) {
 						if ((offered.get(j).getOfferedName()).equals(Databaseconnection.totalFees.get(i).getName())) {
 							found = true;
@@ -118,14 +117,13 @@ public class Customer extends NewPurchasesSeparation {
 		}
 		return newoffered;
 	}
-	
+
 	/**
-	 * This method helps us keep the data of the offered list
-	 * every time that the program runs.
+	 * This method helps us keep the data of the offered list every time that the
+	 * program runs.
 	 */
 	public void createOfferedArrayList() {
-		String url = "jdbc:sqlserver://195.251.249.161:1433;"
-				+ "databaseName=DB29;user=G529;password=59w495f49;";
+		String url = "jdbc:sqlserver://195.251.249.161:1433;" + "databaseName=DB29;user=G529;password=59w495f49;";
 		Connection dbcon;
 		Statement stmt;
 		ResultSet rs;
@@ -142,12 +140,11 @@ public class Customer extends NewPurchasesSeparation {
 		try {
 			dbcon = DriverManager.getConnection(url);
 			stmt = dbcon.createStatement();
-			rs = stmt.executeQuery("SELECT  Name,Mail\r\n" + 
-					"FROM Java_Offered\r\n");
+			rs = stmt.executeQuery("SELECT  Name,Mail\r\n" + "FROM Java_Offered\r\n");
 			while (rs.next()) {
 				offeredMail = rs.getString("Mail");
 				offeredName = rs.getString("Name");
-				offer = new Customer(offeredName,offeredMail);
+				offer = new Customer(offeredName, offeredMail);
 				offered.add(offer);
 			}
 			rs.close();
@@ -160,10 +157,10 @@ public class Customer extends NewPurchasesSeparation {
 
 	}
 
-	//Default cinstructor.
+	// Default cinstructor.
 	public Customer() {
 	}
-	
+
 	public ArrayList<NewPurchasesSeparation> getNewoffered() {
 		return newoffered;
 	}
@@ -197,9 +194,8 @@ public class Customer extends NewPurchasesSeparation {
 	}
 
 	// Constructor.
-		public Customer(String offeredName, String offeredMail) {
-			this.offeredName = offeredName;
-			this.offeredMail = offeredMail;
-		}
-	
+	public Customer(String offeredName, String offeredMail) {
+		this.offeredName = offeredName;
+		this.offeredMail = offeredMail;
+	}
 }
