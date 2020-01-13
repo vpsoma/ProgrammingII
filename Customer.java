@@ -97,7 +97,7 @@ public class Customer extends NewPurchasesSeparation {
 			}
 		}
 	}
-	
+
 	public ArrayList<NewPurchasesSeparation> getOffered() {
 		return offered;
 	}
@@ -105,9 +105,9 @@ public class Customer extends NewPurchasesSeparation {
 	public void setOffered(ArrayList<NewPurchasesSeparation> offered) {
 		this.offered = offered;
 	}
-	
+
 	public Customer() {
-		
+
 	}
 
 	ArrayList<NewPurchasesSeparation> moreoldcustomers = new ArrayList<NewPurchasesSeparation>();
