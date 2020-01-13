@@ -111,7 +111,8 @@ public class Customer extends NewPurchasesSeparation {
 	public void setOffered(ArrayList<NewPurchasesSeparation> offered) {
 		this.offered = offered;
 	}
-
+	
+	//Default constaructor.
 	public Customer() {
 
 	}
