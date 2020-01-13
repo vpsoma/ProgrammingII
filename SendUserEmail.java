@@ -67,8 +67,7 @@ public class SendUserEmail {
 		});
 
 		// sending the email by calling the prepareMessage method in order to create the
-		// message and by using the for loop to send the email to every email on the
-		// array
+		// message
 
 		Message message = prepareMessage(session, myAccount, nameOfUser, emailOfUser, numOfGifts, peopleOfOffer,
 				productsOfOffer);
