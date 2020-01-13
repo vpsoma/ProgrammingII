@@ -6,11 +6,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
 /**
- * Import data from csv file.
- * This class takes the new purchases of the company from a csv file,
- * separates the name,mail,fees and the month of each purchase
+ * Import data from csv file. This class takes the new purchases of the company
+ * from a csv file, separates the name,mail,fees and the month of each purchase
  * and saves them to separate lists.
  *
  * @author Ioanna Martini
@@ -59,5 +57,5 @@ public class CsvNewPurchases {
 			}
 		}
 	}
-	
+
 }
