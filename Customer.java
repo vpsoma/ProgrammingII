@@ -13,6 +13,9 @@ public class Customer extends NewPurchasesSeparation {
 	ArrayList<Integer> counterfees = new ArrayList<Integer>();
 	ArrayList<NewPurchasesSeparation> offered = new ArrayList<NewPurchasesSeparation>();
 
+	/**
+	 * 
+	 */
 	public void addTheNewFees() {
 
 		// A list that contains the total fees of every old customer.
@@ -55,7 +58,10 @@ public class Customer extends NewPurchasesSeparation {
 			}
 		}
 	}
-
+	
+	/**
+	 * 
+	 */
 	public void findsCustomersThatDiserveAnOffer() {
 
 		NewPurchasesSeparation newf;
