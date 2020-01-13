@@ -42,7 +42,7 @@ public class NewPurchasesSeparation extends CsvNewPurchases {
 			boolean found = false;
 			int spot = 0;
 			int j = 0;
-			//Databaseconnection a = new Databaseconnection();
+			// Databaseconnection a = new Databaseconnection();
 			do {
 				if (name.get(i) == Databaseconnection.getTotalFees().get(j).getName()) {
 					found = true;
@@ -134,7 +134,7 @@ public class NewPurchasesSeparation extends CsvNewPurchases {
 	public static void setNewfees(Float newfees) {
 		NewPurchasesSeparation.newfees = newfees;
 	}
-	
+
 	public static String getOfferedName() {
 		return offeredName;
 	}
