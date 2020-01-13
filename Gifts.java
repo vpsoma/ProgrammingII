@@ -21,9 +21,8 @@ public class Gifts {
 		private int numberOfPoductsAsGifts; 
 		private int numberOfPossibleGifts;
 		int numberOfGifts;
-		Products c = new Products();
-		Customer objectOfCustomerClass = new Customer();
-		ArrayList<Product> productsPassedTheSellPeriod = c.createListofProductsPassedTheSellPeriod();
+		Products objectOfProductsClass = new Products();
+		ArrayList<Product> productsPassedTheSellPeriod = objectOfProductsClass.createListofProductsPassedTheSellPeriod();
 		int sizeOfnewoffered = Customer.newoffered.size();
 	
 		/**
