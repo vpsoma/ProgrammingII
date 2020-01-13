@@ -5,6 +5,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author Vasiliki Chalkiopoulou
+ *
+ */
+
 public class Customer extends NewPurchasesSeparation {
 
 	// take an offer
