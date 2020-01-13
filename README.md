@@ -1,2 +1,0 @@
-# ProgrammingII
-Java Project

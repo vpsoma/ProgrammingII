@@ -9,6 +9,7 @@
  */
 
 public class JavaMail extends Thread {
+<<<<<<< HEAD
 	private String[] partOfClients;
 	private String[] partOfNames;
 	private String[] partOfProducts;
@@ -18,11 +19,21 @@ public class JavaMail extends Thread {
 	 * Initializes the three arrays.
 	 */
 	public JavaMail(String[] partOfClients, String[] partOfNames, String[] partOfProducts) {
+=======
+	public String[] partOfClients;
+	public String[] partOfNames;
+	public String[] partOfProducts;
+	public JavaMail(InfoMail object) {
+		/**
+		 * Initializes the three arrays.
+		 */
+>>>>>>> dc8e93ba4bbb96085fdf07afc6829915a569fa14
 		super();
-		this.partOfClients = partOfClients;
-		this.partOfNames = partOfNames;
-		this.partOfProducts = partOfProducts;
+		this.partOfClients = object.getMailsOfCustomersForGifts();
+		this.partOfNames = object.getNamesOfCustomersForGifts();
+		this.partOfProducts = object.getNamesOfProductsAsGifts();
 	}
+<<<<<<< HEAD
 	/**
 	 * This method uses the sendMail method of the SendEmail class 
 	 * with the three arrays as parameters.
@@ -34,10 +45,17 @@ public class JavaMail extends Thread {
 	 * @throws InterruptedException and Exception.
 	 * @see InterruptedException and Exception.
 	 */
+=======
+	InfoMail o = new InfoMail(partOfClients, partOfNames, partOfProducts);
+>>>>>>> dc8e93ba4bbb96085fdf07afc6829915a569fa14
 	public void run(){
     	try {
+<<<<<<< HEAD
     		//Calls the sendMail method in order to send mails.
     		objectOfSendEmailClass.sendMail(partOfClients, partOfNames, partOfProducts);
+=======
+    		SendEmail.sendMail(o);
+>>>>>>> dc8e93ba4bbb96085fdf07afc6829915a569fa14
     	}catch(InterruptedException e) {
     		System.out.println("An interruption occured.");
     	} catch(Exception e) {
