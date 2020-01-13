@@ -12,13 +12,17 @@ import javax.mail.internet.MimeMessage;
 
 
 public class SendUserEmail {
-	public static void sendMail(String nameOfUser, String emailOfUser, object Infomail) throws Exception {
+	public static void sendUserMail(String nameOfUser, String emailOfUser, InfoMail object) throws Exception {
 		
 		String[] names = object.getNamesOfCustomersForGifts();
 		String[] productsToOffer = object.getNamesOfProductsAsGifts();
 
 		int numOfGifts = productsToOffer.length;
-
+		
+		String peopleOfOffer = String.join(", ", names);
+		String productsOfOffer = String.join(", ", productsToOffer);
+		
+		
 		System.out.println("Ready to send email");
 		Properties properties = new Properties();
 
@@ -49,7 +53,7 @@ public class SendUserEmail {
 		 * array
 		 */
 		
-			Message message = prepareMessage(session, myAccount, nameOfUser, emailOfUser, numOfGifts) ;
+			Message message = prepareMessage(session, myAccount, nameOfUser, emailOfUser, numOfGifts, peopleOfOffer, productsOfOffer) ;
 			Transport.send(message);
 		
 
@@ -62,7 +66,7 @@ public class SendUserEmail {
 	 * recepient, the subject and the message of the mail and returns the whole detailed 
 	 * message to be sent
 	 */
-	private static Message prepareMessage(Session session, String myAccount, String nameOfUser, String emailOfUser, int numOfGifts) {
+	private static Message prepareMessage(Session session, String myAccount, String nameOfUser, String emailOfUser, int numOfGifts, String peopleOfOffer, String productsOfOffer) {
 		try {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(myAccount));
@@ -72,8 +76,10 @@ public class SendUserEmail {
 					+ "We are pleased to announce that "
 					+ "you have rewarded your most valuable clients for their loyalty with a present. More specifically you have "
 					+ " given out " + numOfGifts + " presents which where products that had passed their period of sale!"
-					+ " This was a very good gesture on your behalf in order to show to your clients that you value them!" + System.lineSeparator()
-					+ System.lineSeparator() + System.lineSeparator() + "With our best regards, " + "always with love, "
+					+ " More specifically, a more detailed reference to the generous offer you made lies underneath:" + System.lineSeparator() + System.lineSeparator()
+					+ "Clients Rewarded: " + peopleOfOffer + System.lineSeparator() + "Products Given Out: " + productsOfOffer + System.lineSeparator() + System.lineSeparator()
+					+ " This was a very good gesture on your behalf in order to show to your clients that you value them!" 
+					+ System.lineSeparator() + System.lineSeparator() + "Keep up the good work, " + "always with love, "
 					+ System.lineSeparator() + "DetGifthub team");
 			return message;
 			} catch (Exception ex) {
